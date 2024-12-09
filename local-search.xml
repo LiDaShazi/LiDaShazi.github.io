@@ -4,13 +4,19 @@
   
   
   <entry>
-    <title></title>
-    <link href="/2024/12/10/2024-12-09/"/>
-    <url>/2024/12/10/2024-12-09/</url>
+    <title>2024-12-9</title>
+    <link href="/2024/12/09/2024-12-09/"/>
+    <url>/2024/12/09/2024-12-09/</url>
     
     <content type="html"><![CDATA[<h3 id="2024-12-9"><a href="#2024-12-9" class="headerlink" title="2024-12-9"></a>2024-12-9</h3><p>B&#x2F;S和C&#x2F;S</p><p><strong>B&#x2F;S 架构：</strong> 基于浏览器和服务器的架构，用户通过浏览器访问服务器上的应用程序。</p><p><strong>C&#x2F;S 架构：</strong> 基于客户端和服务器的架构，需要专门的客户端软件来与服务器进行交互。</p><p>Browser:浏览器</p><p>服务器程序通常需要处理三类事件：I&#x2F;O事件，信号及定时事件。有两种事件处理模式：</p><p><strong>Reactor模式：</strong>要求主线程（I&#x2F;O处理单元）只负责监听文件描述符上是否有事件发生（可读、可写），若有，则立即通知工作线程（逻辑单元），将socket可读可写事件放入请求队列，交给工作线程处理。这个过程是同步的，读取完数据后应用进程才能处理数据。<br><strong>Proactor模式：</strong>将所有的I&#x2F;O操作都交给主线程和内核来处理（进行读、写），工作线程仅负责处理逻辑，如主线程读完成后users[sockfd].read()，选择一个工作线程来处理客户请求pool-&gt;append(users + sockfd)。</p><p><strong>无论是 Reactor，还是 Proactor，都是一种基于「事件分发」的网络编程模式，区别在于 Reactor 模式是基于「待完成」的 I&#x2F;O 事件，而 Proactor 模式则是基于「已完成」的 I&#x2F;O 事件。</strong></p><p><strong>文件描述符 (File Descriptor)</strong> 是操作系统中用于标识打开文件的整数标识符，常见于类 Unix 系统。</p><p><strong><code>std::atomic</code>的作用：</strong></p><p><strong><code>std::atomic</code>：</strong></p><ul><li>提供对某些变量的<strong>原子操作支持</strong>，避免多线程操作时的数据竞争（Data Race）。</li><li>确保对变量的操作是线程安全的，操作不可分割。</li><li>典型操作包括：读取、写入、加减等，所有操作会在硬件级别（如CPU指令）上保持一致性。</li></ul><p><strong><code>std::size_t</code>：</strong></p><ul><li>是一种无符号整数类型，用于表示内存大小或数组索引。</li><li>平台相关：在32位系统上通常为32位整数，在64位系统上通常为64位整数。</li><li>例如，<code>sizeof</code> 运算符的结果类型就是 <code>std::size_t</code>。</li></ul><p><strong>为什么使用<code>std::size_t</code>？</strong></p><ul><li><code>std::size_t</code> 是一种平台无关的无符号整数类型，专门用于表示对象的大小或数组的索引。</li><li>使用 <code>std::atomic&lt;std::size_t&gt;</code> 可以在线程安全的情况下操作这些大小或索引变量。</li></ul><h4 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h4><p><strong>单例模式是最常用的设计模式之一，目的是保证一个类只有一个实例，并提供一个他的全局访问点，该实例被所有程序模块共享。此时需要把该类的构造和析构函数放入private中。</strong></p><p>单例模式有两种实现方法，一种是懒汉模式，另一种是饿汉模式。</p><p><strong>懒汉模式：</strong> 顾名思义，非常的懒，只有当调用getInstance的时候，才会去初始化这个单例。其中在C++11后，不需要加锁，直接使用函数内局部静态对象即可。<br><strong>饿汉模式：</strong> 即迫不及待，在程序运行时立即初始化。饿汉模式不需要加锁，就可以实现线程安全，原因在于，在程序运行时就定义了对象，并对其初始化。之后，不管哪个线程调用成员函数getinstance()，都只不过是返回一个对象的指针而已。所以是线程安全的，不需要在获取实例的成员函数中加锁。</p><h4 id="RAII"><a href="#RAII" class="headerlink" title="RAII"></a>RAII</h4><p><strong>什么是RAII？</strong></p><p>RAII是<strong>Resource Acquisition Is Initialization</strong>（wiki上面翻译成 “资源获取就是初始化”）的简称，是C++语言的一种管理资源、避免泄漏的惯用法。利用的就是C++构造的对象最终会被销毁的原则。RAII的做法是使用一个对象，在其构造时获取对应的资源，在对象生命期内控制对资源的访问，使之始终保持有效，最后在对象析构的时候，释放构造时获取的资源。</p><p><strong>为什么要使用RAII？</strong></p><p>上面说到RAII是用来管理资源、避免资源泄漏的方法。那么，用了这么久了，也写了这么多程序了，口头上经常会说资源，那么资源是如何定义的？在计算机系统中，资源是数量有限且对系统正常运行具有一定作用的元素。比如：网络套接字、互斥锁、文件句柄和内存等等，它们属于系统资源。由于系统的资源是有限的，就好比自然界的石油，铁矿一样，不是取之不尽，用之不竭的，所以，我们在编程使用系统资源时，都必须遵循一个步骤：<br>1 申请资源；<br>2 使用资源；<br>3 释放资源。<br>第一步和第三步缺一不可，因为资源必须要申请才能使用的，使用完成以后，必须要释放，如果不释放的话，就会造成资源泄漏。</p><p>skip:跳过</p><p>cmd输入services.msc可以查看运行的服务</p><p>ipconfig&#x2F;ip a查看ip地址</p><p>hexo new post +文章名称</p><p>或者直接在post添加文件&#x2F;？</p><p>hexo clean</p><p>hexo generate</p><p>hexo deploy</p>]]></content>
     
     
+    
+    <tags>
+      
+      <tag>学习日志</tag>
+      
+    </tags>
     
   </entry>
   

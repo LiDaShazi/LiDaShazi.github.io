@@ -27,7 +27,7 @@
 <meta property="og:description" content="2024-12-12YAMLYAML Front Matter 是一种用于在文本文件（如Markdown文件）中定义元数据的格式。它通常位于文件的顶部，由三个连续的短横线（---）包围的区域，用于指定个别文件的变量和配置信息。这些元数据可以包括文件的标题、日期、标签、类别等，也可以用于控制页面的布局和版本控制等。 YAML（Yet Another Markup Language）是一种轻量级的数据">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-11T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-12-12T08:55:05.388Z">
+<meta property="article:modified_time" content="2024-12-13T05:48:56.304Z">
 <meta property="article:author" content="llj">
 <meta property="article:tag" content="学习日志">
 <meta name="twitter:card" content="summary_large_image">
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          2.2k 字
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
         
-          13 分钟
+          19 分钟
         
       </span>
     
@@ -422,12 +422,53 @@
 <h4 id="帮助指令"><a href="#帮助指令" class="headerlink" title="帮助指令"></a>帮助指令</h4><p>当我们对某个指令不熟悉时</p>
 <p>man [命令&#x2F;配置文件]  entry(登记) format(格式)</p>
 <p>help 命令 用法</p>
-<h4 id="文件目录类"><a href="#文件目录类" class="headerlink" title="文件目录类"></a>文件目录类</h4><p><strong>pwd</strong> 显示当前目录的绝对路径</p>
-<p><strong>ls</strong> [目录或是文件] <strong>-a</strong> 包括隐藏的 <strong>-l</strong> 详细信息，以列表形式显示 -al</p>
+<h4 id="文件目录类"><a href="#文件目录类" class="headerlink" title="文件目录类"></a>文件目录类</h4><p><strong>目录结尾加&#x2F; 文件不叫 绝对路径开头加&#x2F; 相对路径开头不加&#x2F;</strong></p>
+<p><strong>pwd</strong> 显示当前目录的绝对路径</p>
+<p><strong>ls</strong> [目录或是文件] <strong>-a</strong> 包括隐藏的 <strong>-l</strong> 详细信息，以列表形式显示 -al ll是ls -l的别名</p>
 <p><strong>cd</strong> 切换目录  <code>..</code> 的含义：当前路径的父目录，即去掉最后一层路径。</p>
 <p>cd ~或者 cd 回到自己的家目录 cd ..回到当前目录的上一级 </p>
 <p><strong>mkdir</strong> 创建目录 -p 创建多级目录 绝对路径或者相对路径</p>
 <p><strong>rmdir</strong> 删除空目录 如果有内容是无法删除的  强制删除 rm -rf</p>
+<p><strong>touch</strong> 创建新文件 在当前目录下 可以一次性创键多个文件</p>
+<p><strong>CP</strong>  拷贝某文件到某目录下  cp aaa.txt bbb&#x2F;  -r(递归拷贝) 可以拷贝整个目录到另一个目录  \cp -r aaa&#x2F; bbb&#x2F; 强制覆盖，如果bbb&#x2F;目录下已经有aaa&#x2F;目录下的某个文件，\cp可以强制覆盖，不会提示</p>
+<p><strong>rm</strong>  删除文件或目录  -rf(删除整个目录) -f(取消提示)</p>
+<p><strong>mv</strong> 移动文件或者重命名 </p>
+<p>mv 原名 新名（就在当前目录）重命名 mv aaa.txt bbb.txt</p>
+<p>mv pig.txt &#x2F;root&#x2F; 移动文件</p>
+<p><strong>cat</strong>  查看文件内容 以只读的方式打开 -n显示行号  加上管道命令 |more 进行分页显示</p>
+<p>cat -n &#x2F;etc&#x2F;file | more</p>
+<p><strong>more</strong> 以全屏的方式一次性显示文件  空格 下一页  enter 下一行 ctrl F下一页 ctrl B上一页</p>
+<p><strong>less</strong> 一页一页全屏显示，大型文件查看</p>
+<p><strong>&gt;指令和&gt;&gt;指令</strong>  &gt;输出重定向，会覆盖原文件内容  &gt;&gt;追加到该文件末尾 </p>
+<p><strong>echo</strong> 输出内容到控制台</p>
+<p><strong>head</strong> 显示文件开头内容（10行）  -n 5 指定行数</p>
+<p><strong>tail</strong>  显示文件末尾内容（10行）  -n 5 指定行数  <strong>tail -f 实时追踪文件的更新</strong></p>
+<p><strong>ln -s</strong> 类似于windows里面的快捷方式  </p>
+<p>ln -s &#x2F;root linkToRoot rm -rf linkToRoot</p>
+<p><strong>histoty</strong> 查看已经执行过的历史命令，也可以执行历史指令 history histoty 10</p>
+<p><strong>!178</strong> 执行178这个指令</p>
+<h4 id="时间日期类"><a href="#时间日期类" class="headerlink" title="时间日期类"></a>时间日期类</h4><p><strong>date</strong> 显示当前日期 date  date+%Y 年 date+%m  %d </p>
+<p><strong>date “+Y</strong>年**%m<strong>月</strong>%d<strong>日</strong>%H<strong>时</strong>%M<strong>分</strong>%S<strong>秒</strong>“**</p>
+<p><strong>date -s 设置时间</strong> date -s “2018-10-10 11-22-22”</p>
+<p><strong>cal 显示日历</strong> cal 2024 显示某一年日历</p>
+<h4 id="搜索查找类"><a href="#搜索查找类" class="headerlink" title="搜索查找类"></a>搜索查找类</h4><p><strong>find [搜索范围] [选项]</strong> </p>
+<p>-name 查询方式为名字 -user 文件拥有者 -size +20M  -20M 20M  *.txt</p>
+<p><strong>locate</strong>  快速定位文件路径</p>
+<p>需要先使用updatedb 创建locate数据库  然后locate hello.txt</p>
+<p><strong>| 管道命令</strong>，表示将前一个命令的处理结果传递给后面的命令处理</p>
+<p><strong>grep [选项] 查找内容 源文件</strong>  <strong>-n显示匹配行号，-i忽略字母大小写</strong></p>
+<p><strong>cat hello.txt | grep yes</strong> </p>
+<h4 id="压缩和解压缩类"><a href="#压缩和解压缩类" class="headerlink" title="压缩和解压缩类"></a>压缩和解压缩类</h4><p><strong>gzip&#x2F;gunzip</strong>  压缩和解压缩文件</p>
+<p>使用gzip对文件进行压缩后，不会保留原文件  </p>
+<p><strong>zip&#x2F;unzip</strong> -r(压缩目录)  -d(指定压缩目录)</p>
+<p>zip -r mypackage.zip &#x2F;home&#x2F; 将home目录压缩成mypackage.zip放到当前目录</p>
+<p>zip -d &#x2F;opt&#x2F;tmp&#x2F; maypackage.zip 将maypackage.zip解压到&#x2F;opt&#x2F;tmp&#x2F;目录下</p>
+<p><strong>tar</strong> </p>
+<p>-c产生.tar打包文件 -v显示详细信息 -f指定压缩后的文件名 -z打包的同时压缩 -x解包.tar文件</p>
+<p>tar -zcvf a.tar.gz a1.txt a2.txt  将a1.txt a2.txt打包并压缩成a.tar.gz</p>
+<p>tar -zcvf myhome.tar.gz &#x2F;home&#x2F; 将&#x2F;home&#x2F;打包压缩成myhome.tar.gz</p>
+<p>tar -zxvf a.tar.gz 解压a.tar.gz</p>
+<p>tar -zxvf myhome.tar.gz -C &#x2F;opt&#x2F; 解压myhome.tar.gz 到&#x2F;opt&#x2F;</p>
 
                 
               </div>

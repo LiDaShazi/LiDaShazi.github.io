@@ -19,15 +19,15 @@
   <meta name="author" content="llj">
   <meta name="keywords" content="">
   
-    <meta name="description" content="2024-12-12YAMLYAML Front Matter 是一种用于在文本文件（如Markdown文件）中定义元数据的格式。它通常位于文件的顶部，由三个连续的短横线（---）包围的区域，用于指定个别文件的变量和配置信息。这些元数据可以包括文件的标题、日期、标签、类别等，也可以用于控制页面的布局和版本控制等。 YAML（Yet Another Markup Language）是一种轻量级的数据">
+    <meta name="description" content="2024-12-13组管理和权限管理组介绍：linux每个用户都必须属于一个组，不能独立于组外，在linux每个文件有所有者，所在组，其他组的概念。 查看所有者：ls  -ahl 修改所有者：chown（change owner)  用户名 文件名 chown newowner:newgroup file 改变所有者和所有组 -R 如果是目录 使其下所有的子文件和目录递归生效 造成所有者和所在组可">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2024-12-12">
-<meta property="og:url" content="http://example.com/2024/12/12/2024-12-12/index.html">
+<meta property="og:title" content="2024-12-13">
+<meta property="og:url" content="http://example.com/2024/12/13/2024-12-13/index.html">
 <meta property="og:site_name" content="LiDaShazi">
-<meta property="og:description" content="2024-12-12YAMLYAML Front Matter 是一种用于在文本文件（如Markdown文件）中定义元数据的格式。它通常位于文件的顶部，由三个连续的短横线（---）包围的区域，用于指定个别文件的变量和配置信息。这些元数据可以包括文件的标题、日期、标签、类别等，也可以用于控制页面的布局和版本控制等。 YAML（Yet Another Markup Language）是一种轻量级的数据">
+<meta property="og:description" content="2024-12-13组管理和权限管理组介绍：linux每个用户都必须属于一个组，不能独立于组外，在linux每个文件有所有者，所在组，其他组的概念。 查看所有者：ls  -ahl 修改所有者：chown（change owner)  用户名 文件名 chown newowner:newgroup file 改变所有者和所有组 -R 如果是目录 使其下所有的子文件和目录递归生效 造成所有者和所在组可">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-12-11T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-12-13T06:56:40.198Z">
+<meta property="article:published_time" content="2024-12-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T14:01:17.838Z">
 <meta property="article:author" content="llj">
 <meta property="article:tag" content="学习日志">
 <meta name="twitter:card" content="summary_large_image">
@@ -36,7 +36,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>2024-12-12 - LiDaShazi</title>
+  <title>2024-12-13 - LiDaShazi</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="2024-12-12"></span>
+            <span id="subtitle" data-typed-text="2024-12-13"></span>
           
         </div>
 
@@ -226,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-12-12 00:00" pubdate>
-          2024年12月12日 凌晨
+        <time datetime="2024-12-13 00:00" pubdate>
+          2024年12月13日 凌晨
         </time>
       </span>
     
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          1.5k 字
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
         
-          19 分钟
+          13 分钟
         
       </span>
     
@@ -295,180 +295,152 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">2024-12-12</h1>
+            <h1 id="seo-header">2024-12-13</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="2024-12-12"><a href="#2024-12-12" class="headerlink" title="2024-12-12"></a>2024-12-12</h2><h3 id="YAML"><a href="#YAML" class="headerlink" title="YAML"></a>YAML</h3><p>YAML Front Matter 是一种用于在文本文件（如Markdown文件）中定义元数据的格式。它通常位于文件的顶部，由三个连续的短横线（<code>---</code>）包围的区域，用于指定个别文件的变量和配置信息。这些元数据可以包括文件的标题、日期、标签、类别等，也可以用于控制页面的布局和版本控制等。</p>
-<p>YAML（Yet Another Markup Language）是一种轻量级的数据序列化格式，它易于人类阅读和编写，同时也易于机器解析和生成。</p>
-<h3 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h3><p><strong>linux系统是一个多用户多任务的操作系统，任何一个使用系统资源的用户，都必须向系统管理员申请一个账号，然后以这个账号的身份进入系统</strong></p>
-<p>用户归属于用户组  每个用户属于一个或多个组  root属于root组</p>
-<p>家目录 &#x2F;home&#x2F; 目录下有各个创建的用户对应的家目录，当用户登录时自动进入自己的家目录</p>
-<p><strong>添加用户</strong></p>
-<p>useradd [选项，可以不选] 用户名   没有指定家目录，会自动创建与该用户同名的子家目录，并将该用户添加到家目录中，也就是创建&#x2F;home的目录</p>
-<p><strong>useradd -d &#x2F;home&#x2F;llj</strong> 向指定目录添加用户 直接建新目录</p>
-<p><strong>用户组没有指定，自动创建同名用户组</strong></p>
-<p><strong>cd 切换目录</strong> change director</p>
-<p><strong>passwd 用户名</strong> 指定密码</p>
-<p><strong>mkdir</strong> make director 创建目录 添加用户</p>
-<p><strong>删除目录</strong></p>
-<p><strong>userdel 用户 删除用户</strong>，但是保留家目录</p>
-<p><strong>userdel -r 用户 删除用户</strong>，并且家目录</p>
-<p><strong>在删除用户时，一般要保留家目录，因为有一些文件需要保留</strong></p>
-<p><strong>id 用户</strong>  查询用户信息</p>
-<p><strong>su - 切换用户名</strong>  高权限用户进入低权限用户不需要输密码</p>
-<p><strong>exit</strong> 回退到初始用户</p>
-<p><strong>whoami</strong> 查看当前是那个用户</p>
-<h4 id="用户组"><a href="#用户组" class="headerlink" title="用户组"></a>用户组</h4><p>类似于角色，系统能够可以对用共性的多个用户进行统一的管理</p>
-<p><strong>groupadd</strong> 组名 添加用户组</p>
-<p><strong>clean</strong> 清屏</p>
-<p><strong>groupdel</strong> 组名 删除用户组</p>
-<p><strong>useradd -g 用户组 用户名</strong> 添加有归属的用户</p>
-<p><strong>usermod -g 用户组 用户名</strong> 修改用户所属用户组</p>
-<p><strong>&#x2F;etc&#x2F;passwd</strong> 用户配置信息</p>
-<p>用户名：口令x(指代密码):用户id:组id::家目录：shell</p>
-<p><strong>&#x2F;etc&#x2F;grroup</strong> 组配置信息</p>
-<p>组名：口令x:组id:组内用户列表</p>
-<p><strong>&#x2F;etc&#x2F;shadow</strong>(阴影) 口令配置信息（密码和登录信息，加密）</p>
-<p>注意： <strong>路径问题</strong></p>
-<p>如果你运行的是 <code>vim etc/passwd</code>，而不是 <code>vim /etc/passwd</code>，系统会尝试在当前工作目录下寻找 <code>etc/passwd</code> 文件，而不是全局的 <code>/etc/passwd</code> 文件。如果当前目录中没有该文件，Vim 会新建一个空文件。</p>
-<p><strong>解决办法</strong>：明确指定路径，运行 <code>vim /etc/passwd</code>。</p>
-<h3 id="实用指令"><a href="#实用指令" class="headerlink" title="实用指令"></a>实用指令</h3><h4 id="运行级别"><a href="#运行级别" class="headerlink" title="运行级别"></a><strong>运行级别</strong></h4><p>0：关机  1：单用户  2：多用户无网络  <strong>3：多用户有网络</strong>  4：系统保留  5：图形界面  6：重启</p>
-<p><strong>系统的运行级别配置文件 &#x2F;etc&#x2F;inittab</strong>  tab(标签)</p>
-<p><strong>init 运行级别</strong> 切换到指定运行级别</p>
-<p><strong>cat 文件</strong> 查看文件</p>
-<h4 id="SysVinit和Systemd"><a href="#SysVinit和Systemd" class="headerlink" title="SysVinit和Systemd"></a>SysVinit和Systemd</h4><h5 id="SysVinit"><a href="#SysVinit" class="headerlink" title="SysVinit"></a><strong>SysVinit</strong></h5><ul>
-<li><strong>SysVinit</strong> 是一种传统的初始化系统，源自 Unix 的 <strong>System V</strong> 体系。</li>
-<li>它负责管理系统的启动流程，包括启动服务、挂载文件系统、进入特定运行级别（Runlevel）等。</li>
-<li>配置文件位于 <code>/etc/inittab</code>，通过运行级别（如 <code>0</code>、<code>1</code>、<code>2</code> 等）来定义系统的工作状态。</li>
-<li>常见的服务脚本存放在 <code>/etc/init.d</code>。</li>
-</ul>
-<hr>
-<h5 id="Systemd"><a href="#Systemd" class="headerlink" title="Systemd"></a><strong>Systemd</strong></h5><ul>
-<li><strong>Systemd</strong> 是一种现代化的初始化系统，旨在克服 SysVinit 的局限性，为 Linux 系统提供更快、更可靠的启动和服务管理。</li>
-<li>它使用并行化技术，加快了启动速度，同时引入了服务依赖管理和监控功能。</li>
-<li>配置文件分布在 <code>/etc/systemd/</code> 和 <code>/lib/systemd/system</code> 下，以 <code>.service</code> 文件为主。</li>
-<li>Systemd 不仅是初始化系统，还提供了许多附加功能，例如日志管理（<code>journald</code>）和设备管理（<code>udevd</code>）。</li>
-</ul>
-<hr>
-<h5 id="主要区别"><a href="#主要区别" class="headerlink" title="主要区别"></a><strong>主要区别</strong></h5><table>
+                <h2 id="2024-12-13"><a href="#2024-12-13" class="headerlink" title="2024-12-13"></a>2024-12-13</h2><h3 id="组管理和权限管理"><a href="#组管理和权限管理" class="headerlink" title="组管理和权限管理"></a>组管理和权限管理</h3><h4 id="组介绍："><a href="#组介绍：" class="headerlink" title="组介绍："></a><strong>组介绍：</strong></h4><p>linux每个用户都必须属于一个组，不能独立于组外，在linux每个文件有所有者，所在组，其他组的概念。</p>
+<p>查看所有者：<strong>ls  -ahl</strong></p>
+<p>修改所有者：<strong>chown（change owner)  用户名 文件名</strong></p>
+<p>chown newowner:newgroup file 改变所有者和所有组</p>
+<p>-R 如果是目录 使其下所有的子文件和目录递归生效</p>
+<p>造成所有者和所在组可能不一样</p>
+<p>修改文件所在组：<strong>chgrp 组名 文件名</strong></p>
+<p><strong>除文件的所有者和所有则的文件外，其他用户就是其他组</strong></p>
+<h4 id="权限介绍"><a href="#权限介绍" class="headerlink" title="权限介绍"></a>权限介绍</h4><h5 id="案例详解"><a href="#案例详解" class="headerlink" title="案例详解"></a>案例详解</h5><p><strong>-rw-r–r– 1  tom police 6 3月 18 19:24 ok.txt</strong></p>
+<p>文件类型：</p>
+<p>-普通文件 d目录 l软链接 c字符设备【键盘，鼠标】 b块文件，硬盘</p>
+<p>-文件类型  rw-文件所有者权限 r–文件所在组权限 r–文件其他组用户权限</p>
+<p>1 如果是文件，表示硬链接数目  如果是目录则表示该目录的子目录个数</p>
+<p>tom 代表文件所有者 police 代表文件所在组</p>
+<p>6代表文件大小 如果是目录会显示4096</p>
+<p>3月 18 19:24 文件最后修改时间</p>
+<p>ok.txt 文件名称</p>
+<h5 id="rwx权限介绍"><a href="#rwx权限介绍" class="headerlink" title="rwx权限介绍"></a>rwx权限介绍</h5><p>rwx作用到文件 r代表可读 </p>
+<p>w代表可写，但不代表可以删除，删除一个文件的前题是对该文件所在的目录有写权限，才能删除该文件</p>
+<p>x代表可执行</p>
+<p>rwx作用到目录 r代表可以读取，ls查看目录内容</p>
+<p>w代表可以修改，目录内创建+删除+重命名目录</p>
+<p>x代表可执行，可以进入该目录</p>
+<h4 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h4><p><strong>chmod</strong> 修改文件或者目录权限</p>
+<p><strong>第一种方式： + - &#x3D; 变更权限</strong></p>
+<p>u所有者 g所在组 o其他人 a所有人</p>
+<p>chmod u-x,g+w abc.txt</p>
+<p><strong>第二种方式：通过数字变更权限</strong></p>
+<p> r &#x3D; 4 w &#x3D; 2 x &#x3D; 1</p>
+<p>chmod  755 abc.txt</p>
+<h3 id="实践：警察和土匪游戏"><a href="#实践：警察和土匪游戏" class="headerlink" title="实践：警察和土匪游戏"></a>实践：警察和土匪游戏</h3><p>police： jack, jerry  bandit(土匪) ： xh xq</p>
+<h4 id="1-创建组"><a href="#1-创建组" class="headerlink" title="1.创建组"></a>1.创建组</h4><h4 id="2-创建用户"><a href="#2-创建用户" class="headerlink" title="2.创建用户"></a>2.创建用户</h4><h4 id="3-jack创建一个文件，自己可以读写，本组人可以读，其他组没有任何权限"><a href="#3-jack创建一个文件，自己可以读写，本组人可以读，其他组没有任何权限" class="headerlink" title="3. jack创建一个文件，自己可以读写，本组人可以读，其他组没有任何权限"></a>3. jack创建一个文件，自己可以读写，本组人可以读，其他组没有任何权限</h4><h4 id="4-jack修改该文件，让其他组人可以读，本组人可以读写"><a href="#4-jack修改该文件，让其他组人可以读，本组人可以读写" class="headerlink" title="4. jack修改该文件，让其他组人可以读，本组人可以读写"></a>4. jack修改该文件，让其他组人可以读，本组人可以读写</h4><h4 id="5-xh-投靠警察，使小红可以读写jack的文件"><a href="#5-xh-投靠警察，使小红可以读写jack的文件" class="headerlink" title="5. xh 投靠警察，使小红可以读写jack的文件"></a>5. xh 投靠警察，使小红可以读写jack的文件</h4><h3 id="任务调度"><a href="#任务调度" class="headerlink" title="任务调度"></a>任务调度</h3><h4 id="定时任务调度"><a href="#定时任务调度" class="headerlink" title="定时任务调度"></a>定时任务调度</h4><h5 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h5><p>crontab -e编辑定时任务  -l查询crontab任务 -r删除当前用户所有的crontab任务</p>
+<p>service crond restart 重启任务调度</p>
+<p>如果只是简单的任务，不用写脚本，直接在crontab加入任务即可，对于比较浮渣的任务，需要写脚本（shell)</p>
+<h5 id="任务步骤"><a href="#任务步骤" class="headerlink" title="任务步骤"></a>任务步骤</h5><p><strong>占位符说明</strong> </p>
+<p>每行的语法为：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs">复制代码<br>分钟 小时 日 月 星期 命令<br></code></pre></td></tr></table></figure>
+
+<p>各个占位符的具体含义和范围是：</p>
+<table>
 <thead>
 <tr>
-<th>特性</th>
-<th>SysVinit</th>
-<th>Systemd</th>
+<th>占位符</th>
+<th>描述</th>
+<th>取值范围</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>设计理念</strong></td>
-<td>单线程、串行启动</td>
-<td>并行化、多线程启动</td>
+<td>分钟</td>
+<td>指定分钟</td>
+<td>0-59</td>
 </tr>
 <tr>
-<td><strong>服务管理</strong></td>
-<td>服务启动顺序需手动配置</td>
-<td>自动管理服务依赖，按需启动</td>
+<td>小时</td>
+<td>指定小时</td>
+<td>0-23</td>
 </tr>
 <tr>
-<td><strong>启动速度</strong></td>
-<td>启动速度较慢，不能并行化</td>
-<td>启动速度快，支持并行化</td>
+<td>日</td>
+<td>指定日期</td>
+<td>1-31</td>
 </tr>
 <tr>
-<td><strong>配置文件</strong></td>
-<td><code>/etc/inittab</code> 和 <code>/etc/init.d</code></td>
-<td><code>/etc/systemd/</code> 和 <code>.service</code> 文件</td>
+<td>月</td>
+<td>指定月份</td>
+<td>1-12 或 <code>JAN-DEC</code></td>
 </tr>
 <tr>
-<td><strong>运行级别</strong></td>
-<td>使用运行级别（Runlevel）</td>
-<td>使用目标（Target），更灵活</td>
+<td>星期</td>
+<td>指定星期几</td>
+<td>0-7 (0 和 7 都表示星期天) 或 <code>SUN-SAT</code></td>
 </tr>
 <tr>
-<td><strong>监控和恢复</strong></td>
-<td>缺乏内建服务监控功能</td>
-<td>内建服务监控和自动恢复</td>
-</tr>
-<tr>
-<td><strong>日志管理</strong></td>
-<td>使用传统日志（如 <code>/var/log</code>）</td>
-<td>集中式日志管理，通过 <code>journald</code></td>
-</tr>
-<tr>
-<td><strong>依赖管理</strong></td>
-<td>手动配置服务依赖</td>
-<td>自动检测和管理服务依赖</td>
-</tr>
-<tr>
-<td><strong>扩展功能</strong></td>
-<td>无扩展功能</td>
-<td>提供诸多功能，如 <code>timedatectl</code> 和 <code>networkd</code></td>
-</tr>
-<tr>
-<td><strong>启动顺序</strong></td>
-<td>严格按照脚本文件顺序启动</td>
-<td>根据依赖动态调整启动顺序</td>
-</tr>
-<tr>
-<td><strong>兼容性</strong></td>
-<td>兼容旧版 UNIX 系统</td>
-<td>主流 Linux 发行版的默认选项</td>
+<td>命令</td>
+<td>要执行的命令</td>
+<td>任意有效的 Shell 命令</td>
 </tr>
 </tbody></table>
-<p><strong>如何找回丢失的root密码</strong></p>
-<p>因为进入单用户模式，root不需要密码，进入到单用户模式，然后修改root密码</p>
-<p>开机，在引导是输入回车，看到界面输入e,  新界面选中第二行输入e, 输入1，回车，输入b,进入单用户模式，修改passwd</p>
-<h4 id="帮助指令"><a href="#帮助指令" class="headerlink" title="帮助指令"></a>帮助指令</h4><p>当我们对某个指令不熟悉时</p>
-<p>man [命令&#x2F;配置文件]  entry(登记) format(格式)</p>
-<p>help 命令 用法</p>
-<h4 id="文件目录类"><a href="#文件目录类" class="headerlink" title="文件目录类"></a>文件目录类</h4><p><strong>目录结尾加&#x2F; 文件不叫 绝对路径开头加&#x2F; 相对路径开头不加&#x2F;</strong></p>
-<p><strong>pwd</strong> 显示当前目录的绝对路径</p>
-<p><strong>ls</strong> [目录或是文件] <strong>-a</strong> 包括隐藏的 <strong>-l</strong> 详细信息，以列表形式显示 -al ll是ls -l的别名</p>
-<p><strong>cd</strong> 切换目录  <code>..</code> 的含义：当前路径的父目录，即去掉最后一层路径。</p>
-<p>cd ~或者 cd 回到自己的家目录 cd ..回到当前目录的上一级 </p>
-<p><strong>mkdir</strong> 创建目录 -p 创建多级目录 绝对路径或者相对路径</p>
-<p><strong>rmdir</strong> 删除空目录 如果有内容是无法删除的  强制删除 rm -rf</p>
-<p><strong>touch</strong> 创建新文件 在当前目录下 可以一次性创键多个文件</p>
-<p><strong>CP</strong>  拷贝某文件到某目录下  cp aaa.txt bbb&#x2F;  -r(递归拷贝) 可以拷贝整个目录到另一个目录  \cp -r aaa&#x2F; bbb&#x2F; 强制覆盖，如果bbb&#x2F;目录下已经有aaa&#x2F;目录下的某个文件，\cp可以强制覆盖，不会提示</p>
-<p><strong>rm</strong>  删除文件或目录  -rf(删除整个目录) -f(取消提示)</p>
-<p><strong>mv</strong> 移动文件或者重命名 </p>
-<p>mv 原名 新名（就在当前目录）重命名 mv aaa.txt bbb.txt</p>
-<p>mv pig.txt &#x2F;root&#x2F; 移动文件</p>
-<p><strong>cat</strong>  查看文件内容 以只读的方式打开 -n显示行号  加上管道命令 |more 进行分页显示</p>
-<p>cat -n &#x2F;etc&#x2F;file | more</p>
-<p><strong>more</strong> 以全屏的方式一次性显示文件  空格 下一页  enter 下一行 ctrl F下一页 ctrl B上一页</p>
-<p><strong>less</strong> 一页一页全屏显示，大型文件查看</p>
-<p><strong>&gt;指令和&gt;&gt;指令</strong>  &gt;输出重定向，会覆盖原文件内容  &gt;&gt;追加到该文件末尾 </p>
-<p><strong>echo</strong> 输出内容到控制台</p>
-<p><strong>head</strong> 显示文件开头内容（10行）  -n 5 指定行数</p>
-<p><strong>tail</strong>  显示文件末尾内容（10行）  -n 5 指定行数  <strong>tail -f 实时追踪文件的更新</strong></p>
-<p><strong>ln -s</strong> 类似于windows里面的快捷方式  </p>
-<p>ln -s &#x2F;root linkToRoot rm -rf linkToRoot</p>
-<p><strong>histoty</strong> 查看已经执行过的历史命令，也可以执行历史指令 history histoty 10</p>
-<p><strong>!178</strong> 执行178这个指令</p>
-<h4 id="时间日期类"><a href="#时间日期类" class="headerlink" title="时间日期类"></a>时间日期类</h4><p><strong>date</strong> 显示当前日期 date  date+%Y 年 date+%m  %d </p>
-<p><strong>date “+Y</strong>年**%m<strong>月</strong>%d<strong>日</strong>%H<strong>时</strong>%M<strong>分</strong>%S<strong>秒</strong>“**</p>
-<p><strong>date -s 设置时间</strong> date -s “2018-10-10 11-22-22”</p>
-<p><strong>cal 显示日历</strong> cal 2024 显示某一年日历</p>
-<h4 id="搜索查找类"><a href="#搜索查找类" class="headerlink" title="搜索查找类"></a>搜索查找类</h4><p><strong>find [搜索范围] [选项]</strong> </p>
-<p>-name 查询方式为名字 -user 文件拥有者 -size +20M  -20M 20M  *.txt</p>
-<p><strong>locate</strong>  快速定位文件路径</p>
-<p>需要先使用updatedb 创建locate数据库  然后locate hello.txt</p>
-<p><strong>| 管道命令</strong>，表示将前一个命令的处理结果传递给后面的命令处理</p>
-<p><strong>grep [选项] 查找内容 源文件</strong>  <strong>-n显示匹配行号，-i忽略字母大小写</strong></p>
-<p><strong>cat hello.txt | grep yes</strong> </p>
-<h4 id="压缩和解压缩类"><a href="#压缩和解压缩类" class="headerlink" title="压缩和解压缩类"></a>压缩和解压缩类</h4><p><strong>gzip&#x2F;gunzip</strong>  压缩和解压缩文件</p>
-<p>使用gzip对文件进行压缩后，不会保留原文件  </p>
-<p><strong>zip&#x2F;unzip</strong> -r(压缩目录)  -d(指定压缩目录)</p>
-<p>zip -r mypackage.zip &#x2F;home&#x2F; 将home目录压缩成mypackage.zip放到当前目录</p>
-<p>zip -d &#x2F;opt&#x2F;tmp&#x2F; maypackage.zip 将maypackage.zip解压到&#x2F;opt&#x2F;tmp&#x2F;目录下</p>
-<p><strong>tar</strong> </p>
-<p>-c产生.tar打包文件 -v显示详细信息 -f指定压缩后的文件名 -z打包的同时压缩 -x解包.tar文件</p>
-<p>tar -zcvf a.tar.gz a1.txt a2.txt  将a1.txt a2.txt打包并压缩成a.tar.gz</p>
-<p>tar -zcvf myhome.tar.gz &#x2F;home&#x2F; 将&#x2F;home&#x2F;打包压缩成myhome.tar.gz</p>
-<p>tar -zxvf a.tar.gz 解压a.tar.gz</p>
-<p>tar -zxvf myhome.tar.gz -C &#x2F;opt&#x2F; 解压myhome.tar.gz 到&#x2F;opt&#x2F;</p>
+<p>特殊符号</p>
+<ol>
+<li><p>**星号 (<code>*</code>)**：表示任意值。例如，<code>* * * * *</code> 表示每分钟执行一次任务。</p>
+</li>
+<li><p>**逗号 (<code>,</code>)**：列举多个值。例如，<code>0,15,30,45 * * * *</code> 表示每小时的第 0、15、30 和 45 分钟执行。</p>
+</li>
+<li><p>**连字符 (<code>-</code>)**：表示范围。例如，<code>1-5 * * * *</code> 表示每小时的第 1 到第 5 分钟执行。</p>
+</li>
+<li><p>**斜线 (<code>*/n</code>)**：表示步进。例如，<code>*/5 * * * *</code> 表示每 5 分钟执行一次。</p>
+</li>
+<li><p>**问号 (<code>?</code>)**：在某些 Crontab 变种中，用于占位（通常与 <code>星期</code> 或 <code>日期</code> 配合使用，表示不指定）。这种写法多用于 Quartz 定时器，而非传统的 Crontab。</p>
+</li>
+<li><p>**井号 (<code>#</code>)**：用于指定每月的第几周。例如，<code>5 0 1 * 4#2</code> 表示在每月的第二个星期四的 00:05 执行。</p>
+</li>
+<li><p>cd &#x2F;home&#x2F;</p>
+</li>
+<li><p>vim mytask.sh</p>
+</li>
+<li><p>输入date &gt;&gt;&#x2F;tmp&#x2F;mydate.txt</p>
+</li>
+<li><p>修改权限为可执行 chmod 744 mytask.sh</p>
+</li>
+<li><p>crontab -e (所用定时任务都在一个文件里面)</p>
+</li>
+<li><p>*&#x2F;1 * * * * ls -l &#x2F;etc &gt;&gt; &#x2F;tmp&#x2F;to.txt</p>
+<p>*&#x2F;1 * * * * &#x2F;home&#x2F;mytask.sh</p>
+</li>
+</ol>
+<h3 id="磁盘分区和挂载"><a href="#磁盘分区和挂载" class="headerlink" title="磁盘分区和挂载"></a>磁盘分区和挂载</h3><h4 id="分区基础知识"><a href="#分区基础知识" class="headerlink" title="分区基础知识"></a>分区基础知识</h4><p>1 mbr分区，gtp分区，主分区数量增加，分区最大容量增加</p>
+<p>2 windows磁盘分区 主分区 扩展分区（可以分为逻辑分区）</p>
+<p>3 linux分区 linux无论有几个分区，分给哪一目录使用，归根结底只有一个根目录，一个独立且唯一的文件结构，linux中每个分区都是来组成文件系统的一部分</p>
+<p>linux采用了一种叫做mount(挂载)的处理方法，它的整个文件系统包含了一整套的文件和目录，且将一个分区和一个目录联系起来。</p>
+<p>4 在linux中如何对硬盘进行标号</p>
+<p><strong>lsblk -f&#x2F;lsblk</strong>查看系统分区域挂载的情况</p>
+<p><strong><code>sdx~</code> 的含义</strong></p>
+<ul>
+<li>**<code>s</code>**：表示 SCSI（包括 SATA 和 SAS）设备，但实际上现代系统中也用来标识基于 USB 或 NVMe 接口的设备。</li>
+<li>**<code>d</code>**：代表磁盘（Disk）。</li>
+<li><code>x</code>：代表设备的字母序号，a表示第一个磁盘，b表示第二个磁盘，依此类推。</li>
+</ul>
+<p>设备后缀</p>
+<ul>
+<li><code>sda1</code>、<code>sda2</code> 等：数字后缀表示该磁盘上的分区编号。从5开始后就是逻辑分区</li>
+</ul>
+<h4 id="增加一块磁盘"><a href="#增加一块磁盘" class="headerlink" title="增加一块磁盘"></a>增加一块磁盘</h4><p>1.虚拟机添加磁盘</p>
+<p>2.分区 fdisk &#x2F;dev&#x2F;sdb   n   p   1   1   w</p>
+<p>3.格式化 mkfs -t ext4 &#x2F;dev&#x2F;sdb1</p>
+<p>4.挂载 先创建一个 &#x2F;home&#x2F;newdisk ,挂载 mount &#x2F;dev&#x2F;sdb1 &#x2F;home&#x2F;newdisk</p>
+<p>5.设置永久挂载  vim &#x2F;etc&#x2F;fstab</p>
+<p>&#x2F;dev&#x2F;sdb1         &#x2F;home&#x2F;newdisk        ext4     defaults       0 0</p>
+<h4 id="磁盘情况查询"><a href="#磁盘情况查询" class="headerlink" title="磁盘情况查询"></a>磁盘情况查询</h4><p><strong>df -h</strong>  系统整体使用情况</p>
+<p><strong>du -h &#x2F;目录</strong> </p>
+<p>某个目录使用情况   -s 指定目录占用大小汇总  -a含文件    -c列出明细的同时，增加汇总值    –max-depth&#x3D;1 子目录深度</p>
+<p>du -ach –max-depth&#x3D;1 &#x2F;opt</p>
+<p>统计某个目录下有多少文件</p>
+<p>ls -l &#x2F;home | grep “^-“ | wc -l  wc是统计的意思</p>
+<p>统计&#x2F;home文件夹下目录个数</p>
+<p>ls -l &#x2F;home | grep “^d” | wc -l </p>
+<p>统计&#x2F;home文件夹下文件个数，包括子文件夹里的</p>
+<p>ls -lR &#x2F;home | grep “^d” | wc -l </p>
+<p>以树状形式查看目录</p>
+<p>yum install tree</p>
+<p>tree &#x2F;home&#x2F;</p>
 
                 
               </div>
@@ -514,8 +486,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>2024-12-12</div>
-      <div>http://example.com/2024/12/12/2024-12-12/</div>
+      <div>2024-12-13</div>
+      <div>http://example.com/2024/12/13/2024-12-13/</div>
     </div>
     <div class="license-meta">
       
@@ -527,7 +499,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年12月12日</div>
+          <div>2024年12月13日</div>
         </div>
       
       
@@ -559,18 +531,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/12/13/2024-12-13/" title="2024-12-13">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">2024-12-13</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/12/11/2024-12-11/" title="2024-12-11">
-                        <span class="hidden-mobile">2024-12-11</span>
+                      <a href="/2024/12/12/2024-12-12/" title="2024-12-12">
+                        <span class="hidden-mobile">2024-12-12</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

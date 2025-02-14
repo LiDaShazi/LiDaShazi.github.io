@@ -1,0 +1,741 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="llj">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="算法时间复杂度：操作次数只要最高阶的项 O()：最差时间复杂度 实际需要考虑到操作所需时间，比如位运算和乘法运算的时间差距很大 选择排序:12345678910111213141516171819202122232425262728293031#include &lt;iostream&gt;#include &lt;vector&gt;using namespace std;void selec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LiDaShazi">
+<meta property="og:url" content="http://example.com/2025/02/14/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="LiDaShazi">
+<meta property="og:description" content="算法时间复杂度：操作次数只要最高阶的项 O()：最差时间复杂度 实际需要考虑到操作所需时间，比如位运算和乘法运算的时间差距很大 选择排序:12345678910111213141516171819202122232425262728293031#include &lt;iostream&gt;#include &lt;vector&gt;using namespace std;void selec">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-02-14T05:43:02.679Z">
+<meta property="article:modified_time" content="2025-02-14T08:41:33.419Z">
+<meta property="article:author" content="llj">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>LiDaShazi</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"L2jMVtto719vdWpNEHqfbPQl-gzGzoHsz","app_key":"bQd69eujwwZdjhfDnbRKWGcJ","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>LiDaShazi</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-14 13:43" pubdate>
+          2025年2月14日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>算法时间复杂度：操作次数只要最高阶的项 O()：最差时间复杂度</p>
+<p>实际需要考虑到操作所需时间，比如位运算和乘法运算的时间差距很大</p>
+<h5 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序:"></a>选择排序:</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">selectionSort</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;arr)</span> </span>&#123;<br>    <span class="hljs-type">int</span> n = arr.<span class="hljs-built_in">size</span>();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n - <span class="hljs-number">1</span>; ++i) &#123;<br>        <span class="hljs-type">int</span> minindex = i;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = i + <span class="hljs-number">1</span>; j &lt; n; ++j) &#123;<br>            <span class="hljs-keyword">if</span> (arr[j] &lt; arr[minindex]) &#123;<br>                minindex = j;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (i != minindex) &#123;<br>            <span class="hljs-built_in">swap</span>(arr[i], arr[minindex]);<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">printArr</span><span class="hljs-params">(<span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt; &amp;arr)</span> </span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i: arr) &#123;<br>        cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;,&quot;</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    vector&lt;<span class="hljs-type">int</span>&gt; arr = &#123;<span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>&#125;;<br>    <span class="hljs-built_in">selectionSort</span>(arr);<br>    <span class="hljs-built_in">printArr</span>(arr);<br>&#125;<br><span class="hljs-comment">//时间复杂度：O(N2) 空间复杂度O(1)</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">bubbleSort</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;arr)</span> </span>&#123;<br>    <span class="hljs-type">int</span> n = arr.<span class="hljs-built_in">size</span>();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = n - <span class="hljs-number">1</span>; i &gt; <span class="hljs-number">0</span>; --i) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; i; j++) &#123;<br>            <span class="hljs-keyword">if</span> (arr[j] &gt; arr[j + <span class="hljs-number">1</span>]) &#123;<br>                <span class="hljs-built_in">swap</span>(arr[j], arr[j + <span class="hljs-number">1</span>]);<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-comment">//时间复杂度：O(N2) 空间复杂度O(1)</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="异或运算："><a href="#异或运算：" class="headerlink" title="异或运算："></a><strong>异或运算：</strong></h5><p>相同为0，不同为1 符号^  还可以理解为不进位相加</p>
+<p>性质：（实质是同一位上的0和1的个数，奇数个1就是1，偶数个1就是0）</p>
+<p>1.0^N&#x3D;N  N^N&#x3D;0</p>
+<p>2.满足交换律和结合律</p>
+<p>3.满足无序性，同一批数运算出来结果是相同的</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">swap2</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;arr, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j)</span> </span>&#123;<br>    arr[i] = arr[i] ^ arr[j];<br>    arr[j] = arr[i] ^ arr[j];<br>    arr[i] = arr[i] ^ arr[j];<br>&#125;<br><span class="hljs-comment">//能够这么做的前提是两个数不是同一块内存(会将两个数都洗成0)，数字可以相等</span><br><span class="hljs-comment">//原理在于当两个数的内存是同一块地址时，会同时改变两个数</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="例题："><a href="#例题：" class="headerlink" title="例题："></a>例题：</h5><p>1.在一个数组中，已知中有一种数出现了奇数次，其他的都出现了偶数次，找出这个数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//偶数的都和成0了</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">bitex</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;arr)</span> </span>&#123;<br>    <span class="hljs-type">int</span> n = arr.<span class="hljs-built_in">size</span>();<br>    <span class="hljs-type">int</span> res = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) &#123;<br>        res = arr[i]^res;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>2.在一个数组中，已知中有两种数出现了奇数次，其他的都出现了偶数次，找出这两个数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">bitex2</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;arr)</span> </span>&#123;<br>    <span class="hljs-type">int</span> n = arr.<span class="hljs-built_in">size</span>();<br>    <span class="hljs-type">int</span> eor = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) &#123;<br>        eor = eor ^ arr[i];<br>    &#125;<br>    <span class="hljs-type">int</span> group = eor &amp; (~eor + <span class="hljs-number">1</span>); <span class="hljs-comment">//提取出最右侧的1，剩下的都是0</span><br>    <span class="hljs-type">int</span> onlyOne = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) &#123;<br>        <span class="hljs-keyword">if</span> ((group &amp; arr[i]) != <span class="hljs-number">0</span>) &#123;<br>            onlyOne ^= arr[i];<br>        &#125;<br>    &#125;<br>    cout &lt;&lt; onlyOne &lt;&lt; <span class="hljs-string">&quot;,&quot;</span> &lt;&lt; (eor ^ onlyOne) &lt;&lt; endl;<br>&#125;<br><span class="hljs-comment">//通过eor最低位一个不为1的位将原数组分成两组，一组那一位为0，一组为1，反正偶数个数的数字一定在一组，奇数个数的数字分别在两组</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">insertSort</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;arr)</span> </span>&#123;<br>    <span class="hljs-type">int</span> n = arr.<span class="hljs-built_in">size</span>();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; n; ++i) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = i; j &gt; <span class="hljs-number">0</span>; --j) &#123;<br>            <span class="hljs-keyword">if</span> (arr[j] &lt; arr[j - <span class="hljs-number">1</span>]) &#123;<br>                <span class="hljs-built_in">swap</span>(arr[j], arr[j - <span class="hljs-number">1</span>]);<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-comment">//逐步实现0~i范围上有序</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h5><p>只要是能够构建出一种排他性的问题就可以二分了，比如左边一定有，右边一定没有，又或是左边一定有，右边可能有，只需找一个</p>
+<p>左右两侧与求的问题有关，并且确定可以利用条件甩掉一边就可以二分</p>
+<p>1.在一个有序数组中，找某个数是否存在</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function">nt <span class="hljs-title">binarySearch</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;arr, <span class="hljs-type">int</span> target)</span> </span>&#123;<br>    <span class="hljs-type">int</span> n = arr.<span class="hljs-built_in">size</span>();<br>    <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> right = n - <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span> (left &lt;= right) &#123; <span class="hljs-comment">//注意这里是&lt;=</span><br>        <span class="hljs-type">int</span> mid = left + (right - left) / <span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">if</span> (target == arr[mid]) &#123;<br>            <span class="hljs-keyword">return</span> mid;<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (arr[mid] &gt; target) &#123;<br>            right = mid - <span class="hljs-number">1</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            left = mid + <span class="hljs-number">1</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>2.在一个有序数组中，找&gt;&#x3D;某个数最左侧的位置</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">bigLeft</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;arr, <span class="hljs-type">int</span> target)</span> </span>&#123;<br>    <span class="hljs-type">int</span> n = arr.<span class="hljs-built_in">size</span>();<br>    <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> right = n - <span class="hljs-number">1</span>;<br>    <span class="hljs-type">int</span> ans = <span class="hljs-number">-1</span>;<br>    <span class="hljs-keyword">while</span> (left &lt;= right) &#123;<br>        <span class="hljs-type">int</span> mid = left + (right - left) / <span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">if</span> (arr[mid] &gt;= target) &#123;<br>            ans = mid;<span class="hljs-comment">//只要是找到新的一定比原来记录的值的小</span><br>            right = mid - <span class="hljs-number">1</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            left = mid + <span class="hljs-number">1</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;;<br>&#125;<br><span class="hljs-comment">//一直二分到底直到结束，找到最小的那个数</span><br></code></pre></td></tr></table></figure>
+
+<p>3.局部最小值问题，一个无序数组中，任何两个相邻的位置不同，求一个局部最小的位置</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findLocalMin</span><span class="hljs-params">(<span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt;&amp; arr)</span> </span>&#123;<br>    <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> right = arr.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;<br><br>    <span class="hljs-keyword">while</span> (left &lt;= right) &#123;<br>        <span class="hljs-type">int</span> mid = left + (right - left) / <span class="hljs-number">2</span>;<br><span class="hljs-comment">// arr[mid] &lt; arr[mid - 1]：确保 mid 比左邻居小。</span><br><span class="hljs-comment">// arr[mid] &lt; arr[mid + 1]：确保 mid 比右邻居小。</span><br><span class="hljs-comment">// 另外还需要考虑数组的边界：mid == 0 时没有左邻居，mid == arr.size() - 1 时没有右邻居。</span><br>        <span class="hljs-keyword">if</span> ((mid == <span class="hljs-number">0</span> || arr[mid] &lt; arr[mid - <span class="hljs-number">1</span>]) &amp;&amp; (mid == arr.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span> || arr[mid] &lt; arr[mid + <span class="hljs-number">1</span>])) &#123;<br>            <span class="hljs-keyword">return</span> mid; <span class="hljs-comment">// 找到局部最小</span><br>        &#125;<br>        <span class="hljs-keyword">if</span> (arr[mid] &gt; arr[mid + <span class="hljs-number">1</span>]) &#123;<br>            left = mid + <span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span> &#123;<br>            right = mid - <span class="hljs-number">1</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h5 id="对数器（随机样本产生器）"><a href="#对数器（随机样本产生器）" class="headerlink" title="对数器（随机样本产生器）"></a>对数器（随机样本产生器）</h5><p>abs(取绝对值)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//对数器</span><br><span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">generateRandomArray</span><span class="hljs-params">(<span class="hljs-type">int</span> maxSize, <span class="hljs-type">int</span> maxValue)</span> </span>&#123;<br>    <span class="hljs-type">int</span> size = <span class="hljs-built_in">rand</span>() % (maxSize + <span class="hljs-number">1</span>);<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">arr</span><span class="hljs-params">(size)</span></span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; size; ++i) &#123;<br>        arr[i] = <span class="hljs-built_in">abs</span>(<span class="hljs-built_in">rand</span>() % (maxValue + <span class="hljs-number">1</span>) - <span class="hljs-built_in">rand</span>() % (maxValue + <span class="hljs-number">1</span>));<br>    &#125;<br>    <span class="hljs-keyword">return</span> arr;<br>&#125;<br><span class="hljs-comment">//用arr[i] = abs(rand() % (maxValue + 1) - rand() % (maxValue + 1));而不是arr[i]=rand() % (maxValue + 1)</span><br><span class="hljs-comment">//更偏向于 数值差异 的分布，而非均匀的单一随机数</span><br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C/" class="category-chain-item">C++</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2025/02/14/算法学习/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>llj</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年2月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/02/14/%E9%AB%98%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/12/17/C++%E9%9D%A2%E7%BB%8F/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"L2jMVtto719vdWpNEHqfbPQl-gzGzoHsz","appKey":"bQd69eujwwZdjhfDnbRKWGcJ","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

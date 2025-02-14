@@ -1,0 +1,970 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="llj">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="2024-12-17NAT模式连接原理 修改虚拟网段，虚拟网络编辑器 查看网关，vmnet8 网络环境配置自动获取：首选项，网络，自动连接 手动获取：script（脚本） vim  etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ens33(ens33网卡)  进程管理每个执行的程序称为一个进程，每个进程都分配一个ID号 每一个进程，都对应一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-12-17">
+<meta property="og:url" content="http://example.com/2024/12/17/2024-12-17/index.html">
+<meta property="og:site_name" content="LiDaShazi">
+<meta property="og:description" content="2024-12-17NAT模式连接原理 修改虚拟网段，虚拟网络编辑器 查看网关，vmnet8 网络环境配置自动获取：首选项，网络，自动连接 手动获取：script（脚本） vim  etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ens33(ens33网卡)  进程管理每个执行的程序称为一个进程，每个进程都分配一个ID号 每一个进程，都对应一个">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/2024-12-17-1.png">
+<meta property="og:image" content="http://example.com/images/2024-12-17-2.png">
+<meta property="og:image" content="http://example.com/images/2024-12-17-3.png">
+<meta property="og:image" content="http://example.com/images/2024-12-17-4.png">
+<meta property="og:image" content="http://example.com/images/2024-12-17-5.png">
+<meta property="og:image" content="http://example.com/images/2024-12-17-6.png">
+<meta property="og:image" content="http://example.com/images/2024-12-17-7.png">
+<meta property="og:image" content="http://example.com/images/2024-12-17-8.png">
+<meta property="og:image" content="http://example.com/%5Cimages%5C2024-12-17-9.png">
+<meta property="og:image" content="http://example.com/%5Cimages%5C2024-12-17-10.png">
+<meta property="og:image" content="http://example.com/images%5C2024-12-17-11.png">
+<meta property="article:published_time" content="2024-12-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-17T15:19:50.539Z">
+<meta property="article:author" content="llj">
+<meta property="article:tag" content="学习日志">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/images/2024-12-17-1.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>2024-12-17 - LiDaShazi</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"L2jMVtto719vdWpNEHqfbPQl-gzGzoHsz","app_key":"bQd69eujwwZdjhfDnbRKWGcJ","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>LiDaShazi</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2024-12-17"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-12-17 00:00" pubdate>
+          2024年12月17日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">2024-12-17</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="2024-12-17"><a href="#2024-12-17" class="headerlink" title="2024-12-17"></a>2024-12-17</h2><h4 id="NAT模式连接原理"><a href="#NAT模式连接原理" class="headerlink" title="NAT模式连接原理"></a>NAT模式连接原理</h4><p><img src="/images/2024-12-17-1.png" srcset="/img/loading.gif" lazyload alt="NAT模式连接原理"></p>
+<p>修改虚拟网段，虚拟网络编辑器</p>
+<p>查看网关，vmnet8</p>
+<h4 id="网络环境配置"><a href="#网络环境配置" class="headerlink" title="网络环境配置"></a>网络环境配置</h4><p>自动获取：首选项，网络，自动连接</p>
+<p>手动获取：script（脚本）</p>
+<p>vim  etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ens33(ens33网卡)</p>
+<p><img src="/images/2024-12-17-2.png" srcset="/img/loading.gif" lazyload alt="2"></p>
+<h4 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h4><p>每个执行的程序称为一个进程，每个进程都分配一个ID号</p>
+<p>每一个进程，都对应一个父进程，而这个父进程可以复制多个子进程</p>
+<p>每个进程都可能以两种方式存在，前台与后台</p>
+<p>一般系统的服务都以后台进程形式存在，而且都会常驻系统中，直到关机才结束</p>
+<h5 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h5><p><strong>ps</strong>命令查看系统进程 -a 所有进程 -u以用户格式显示进程信息 -x显示后台进程运行参数</p>
+<p><strong>ps -aux</strong></p>
+<p><img src="/images/2024-12-17-3.png" srcset="/img/loading.gif" lazyload alt="3"></p>
+<p>ps-aux | grep xxx 过滤指令，将显示的内容进行过滤</p>
+<p>查看父进程 ps -ef  PPID就是父进程</p>
+<p>pstree 树状形式查看 -p显示pid -u显示所属用户</p>
+<h5 id="终止进程"><a href="#终止进程" class="headerlink" title="终止进程"></a>终止进程</h5><p>kill [选项] 进程号   -9表示强制进程停止</p>
+<p>killall 进程名称  支持通配符</p>
+<p>1.踢掉jack的非法登录</p>
+<p>ps -aux | grep sshd  找到进程号</p>
+<p>kill 进程号</p>
+<p>2.终止远程登录sshd</p>
+<p>kill 进程号</p>
+<p>3.终止多个gedit编辑器</p>
+<p>killall gedit</p>
+<p>4.强制关闭一个终端</p>
+<p>ps -aux | grep bash</p>
+<p>kill -9 进程号</p>
+<h4 id="服务管理"><a href="#服务管理" class="headerlink" title="服务管理"></a>服务管理</h4><p>服务本质就是进程，但是运行在后台，通常会监听某个端口，等待其他程序的请求</p>
+<p>systemctl&#x2F;service 服务名 [start|stop|restart|reload|status]  只是临时生效，重启系统后会恢复</p>
+<p>telnet ip 端口 查看某个ip的某个端口是否打开</p>
+<h5 id="查看服务"><a href="#查看服务" class="headerlink" title="查看服务"></a>查看服务</h5><p>1.使用setup 系统服务 就可以看到</p>
+<p>2..&#x2F;etc&#x2F;init.d&#x2F;服务名称</p>
+<h4 id="动态监控"><a href="#动态监控" class="headerlink" title="动态监控"></a>动态监控</h4><h5 id="进程"><a href="#进程" class="headerlink" title="进程"></a><strong>进程</strong></h5><p><strong>top</strong>  -u监控某个user k杀死某个进程 -d多少秒刷新</p>
+<p><img src="/images/2024-12-17-4.png" srcset="/img/loading.gif" lazyload alt="4"></p>
+<h5 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h5><p>netstat 查看网络服务</p>
+<p>netstat -anp 查看所有的网络服务</p>
+<p>netstat -anp | grep sshd</p>
+<h4 id="RPM和YUM"><a href="#RPM和YUM" class="headerlink" title="RPM和YUM"></a>RPM和YUM</h4><p>rpm用户互联网下载包的打包和管理工具</p>
+<p>rpm -qa | grep firfox  查看安装的包  </p>
+<p><img src="/images/2024-12-17-5.png" srcset="/img/loading.gif" lazyload alt="5"></p>
+<p>rpm -qi firefox  具体信息</p>
+<p>rpm -ql firefox 安装了哪些文件</p>
+<p>rpm -qf &#x2F;etc&#x2F;passwd 文件全路径名  查询文件所属的软件包</p>
+<p>rpm -e firefox 卸载软件包  </p>
+<p>rpm -ivh RPM包全路径 安装软件</p>
+<p><img src="/images/2024-12-17-6.png" srcset="/img/loading.gif" lazyload alt="6"></p>
+<p>yum是一个shell前端软件管理器，基于RPM包管理，能够从指定的服务器下载rpm包并进行安装，可以自动处理依赖关系，并安装所有依赖的软件包，前提是可以联网</p>
+<p>yum list | grep xx  查看是否有需要安装的软件</p>
+<p>yum install xxx 默认安装最新版本</p>
+<h3 id="shell编程"><a href="#shell编程" class="headerlink" title="shell编程"></a>shell编程</h3><p>shell是命令行解释器，为用户提供了一个可以向linux内核发送请求以便运行程序的界面系统级程序，用户可以用shell启动，挂起，停止甚至是编写一些程序</p>
+<h4 id="脚本格式"><a href="#脚本格式" class="headerlink" title="脚本格式"></a>脚本格式</h4><p>1.脚本一#!bin&#x2F;bash开头</p>
+<p>2.脚本需要有可执行权限</p>
+<h4 id="编写第一个shell脚本"><a href="#编写第一个shell脚本" class="headerlink" title="编写第一个shell脚本"></a>编写第一个shell脚本</h4><p>1.vim myshell.sh</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-meta">#!/bin/bash</span><br><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;hello,world!&quot;</span>   <span class="hljs-comment">#它是解释</span><br><span class="hljs-comment">#多行注释</span><br>:&lt;&lt;!<br><span class="hljs-comment">#内容</span><br>!<br></code></pre></td></tr></table></figure>
+
+<p>2.给所有者一个执行权限</p>
+<p>chmod 744 myshell.sh</p>
+<p>3.执行</p>
+<p>.&#x2F;myshell.sh  &#x2F;&#x2F;相对路径</p>
+<p>&#x2F;root&#x2F;shell&#x2F;myshell.sh  &#x2F;&#x2F;绝对路径</p>
+<p>(如果不给可执行权限，也可以直接用 sh .&#x2F;myshell.sh，但是不推荐)</p>
+<h4 id="shell的变量"><a href="#shell的变量" class="headerlink" title="shell的变量"></a>shell的变量</h4><h5 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h5><p>1.变量分为系统变量和用户自定义变量</p>
+<p>2.系统变量有：$HOME $PWD $SHELL $USER</p>
+<p>3.显示shell中所有变量set</p>
+<h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><p>1.定义变量</p>
+<p>A&#x3D;100  echo “A&#x3D;$A”</p>
+<p>2.销毁变量</p>
+<p>unset A echo “A&#x3D;$A”</p>
+<p>3.静态变量，不能unset</p>
+<p>readonly A&#x3D;99</p>
+<h5 id="变量定义规则"><a href="#变量定义规则" class="headerlink" title="变量定义规则"></a>变量定义规则</h5><p>1.变量名称可以有字母，数字，下划线开头，但是不能以数字开头</p>
+<p>2.等号两侧不能有空格</p>
+<p>3.变量名称一般用大写</p>
+<p>4.使用&#96;&#96;将命令括起来或者用$()，可以得到命令的结果为变量</p>
+<h5 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h5><p><img src="/images/2024-12-17-7.png" srcset="/img/loading.gif" lazyload alt="7"></p>
+<p>vim &#x2F;etc&#x2F;profile</p>
+<p>TOMCAT_HOME&#x3D;&#x2F;opt&#x2F;tomcat</p>
+<p>export TOMCAT_HOME</p>
+<p>注意：在输出之前，需要让其生效</p>
+<p>source  &#x2F;etc&#x2F;profile</p>
+<h5 id="位置参数变量"><a href="#位置参数变量" class="headerlink" title="位置参数变量"></a>位置参数变量</h5><p>当我们执行一个shell脚本时，如果希望获取到命令行的参数信息，就可以使用到为止参数变量，比如：.&#x2F;myshell.sh 100 200 , 这个就是一个执行shell的命令行，可以从myshell脚本中获取到参数信息</p>
+<p>$n(n为数字，$0代表命令本身 $1-$9代表第一到第九个参数，十以上的参数需要用大括号包含，如${10})</p>
+<p>$*(代表命令行中的所有参数，把所有参数看做一个整体)</p>
+<p>$@(也代表命令行中所有的参数，不过他把每个参数去区分对待)</p>
+<p>$#(代表命令行中参数的个数)</p>
+<h5 id="预定义变量"><a href="#预定义变量" class="headerlink" title="预定义变量"></a>预定义变量</h5><p>$$(当前进程的进程号PID)</p>
+<p>$!(后台运行的最后一个进程的进程号)</p>
+<p>$?(最后一次执行命令的返回状态，如果这个变量的值为0，证明上一个命令正确执行，如果这个变量的值为非0，具体那个数由命令自己来决定，则证明上一个命令执行不正确)</p>
+<p><img src="/images/2024-12-17-8.png" srcset="/img/loading.gif" lazyload alt="8"></p>
+<h4 id="shell运算符"><a href="#shell运算符" class="headerlink" title="shell运算符"></a>shell运算符</h4><p>1.$()  RESURT1&#x3D;$(((2+3)*4))</p>
+<p>2.$[]  RESURT2&#x3D;$[(2+3)*4]</p>
+<p>3.expr </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">TEMP=`expr 2 + 3`<br>RESURT3=`expr $TEMP \* 4`<br>echo &quot;RESURT3=$RESULT&quot;<br><span class="hljs-meta prompt_">#</span><span class="language-bash">这种才要给空格，另外两个不要给空格</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h4><p>[ condition ]   (注意condition前后要有空格)</p>
+<h5 id="1-文件属性判断"><a href="#1-文件属性判断" class="headerlink" title="1. 文件属性判断"></a><strong>1. 文件属性判断</strong></h5><p>使用 <code>test</code> 命令或者 <code>[ ]</code> 表达式来判断文件的状态。</p>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-e file</code></td>
+<td>文件存在</td>
+</tr>
+<tr>
+<td><code>-f file</code></td>
+<td>文件存在且是普通文件</td>
+</tr>
+<tr>
+<td><code>-d file</code></td>
+<td>文件存在且是目录</td>
+</tr>
+<tr>
+<td><code>-r file</code></td>
+<td>文件存在且可读</td>
+</tr>
+<tr>
+<td><code>-w file</code></td>
+<td>文件存在且可写</td>
+</tr>
+<tr>
+<td><code>-x file</code></td>
+<td>文件存在且可执行</td>
+</tr>
+<tr>
+<td><code>-s file</code></td>
+<td>文件存在且非空</td>
+</tr>
+<tr>
+<td><code>file1 -nt file2</code></td>
+<td><code>file1</code> 比 <code>file2</code> 更新</td>
+</tr>
+<tr>
+<td><code>file1 -ot file2</code></td>
+<td><code>file1</code> 比 <code>file2</code> 更旧</td>
+</tr>
+<tr>
+<td><code>file1 -ef file2</code></td>
+<td><code>file1</code> 和 <code>file2</code> 硬链接到同一个文件</td>
+</tr>
+</tbody></table>
+<h5 id="2-字符串判断"><a href="#2-字符串判断" class="headerlink" title="2. 字符串判断"></a><strong>2. 字符串判断</strong></h5><p>用于比较字符串内容。</p>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-z str</code></td>
+<td>字符串长度为 0</td>
+</tr>
+<tr>
+<td><code>-n str</code></td>
+<td>字符串长度大于 0</td>
+</tr>
+<tr>
+<td><code>str1 = str2</code></td>
+<td>字符串相等</td>
+</tr>
+<tr>
+<td><code>str1 != str2</code></td>
+<td>字符串不相等</td>
+</tr>
+<tr>
+<td><code>[ str ]</code></td>
+<td>字符串非空，相当于 <code>-n str</code> 的简写</td>
+</tr>
+</tbody></table>
+<h5 id="3-数值判断"><a href="#3-数值判断" class="headerlink" title="3. 数值判断"></a><strong>3. 数值判断</strong></h5><p>用于比较数值大小。</p>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>num1 -eq num2</code></td>
+<td>等于</td>
+</tr>
+<tr>
+<td><code>num1 -ne num2</code></td>
+<td>不等于</td>
+</tr>
+<tr>
+<td><code>num1 -gt num2</code></td>
+<td>大于</td>
+</tr>
+<tr>
+<td><code>num1 -lt num2</code></td>
+<td>小于</td>
+</tr>
+<tr>
+<td><code>num1 -ge num2</code></td>
+<td>大于等于</td>
+</tr>
+<tr>
+<td><code>num1 -le num2</code></td>
+<td>小于等于</td>
+</tr>
+</tbody></table>
+<h4 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h4><h5 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs shell">if [ condition ];<br><br>    #程序<br><br>fi<br><br>或者<br><br>if [ condition]<br><br>   then <br><br>      #程序<br><br>   elif [ condition ]<br><br>    then<br><br>       #程序<br><br>fi<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="case语句"><a href="#case语句" class="headerlink" title="case语句"></a>case语句</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs shell">case variable in<br>    pattern1)<br>        # 当 variable 匹配 pattern1 时执行的命令<br>        command1<br>        ;;<br>    pattern2)<br>        # 当 variable 匹配 pattern2 时执行的命令<br>        command2<br>        ;;<br>    pattern3||pattern4)<br>        # 当 variable 匹配 pattern3 或 pattern4 时执行的命令<br>        command3<br>        ;;<br>    *)<br>        # 默认情况下（没有匹配时）执行的命令<br>        default_command<br>        ;;<br>esac<br></code></pre></td></tr></table></figure>
+
+<p><img src="/%5Cimages%5C2024-12-17-9.png" srcset="/img/loading.gif" lazyload alt="9"></p>
+<h5 id="for语句"><a href="#for语句" class="headerlink" title="for语句"></a>for语句</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">for variable in list<br>do<br>    commands<br>done<br></code></pre></td></tr></table></figure>
+
+<p><img src="/%5Cimages%5C2024-12-17-10.png" srcset="/img/loading.gif" lazyload alt="10"></p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>参数拆分方式</th>
+<th>输出形式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>$*</code></td>
+<td>不加引号时，会将参数按 <code>IFS</code> 分隔后拆分成多个部分</td>
+<td>分裂后的多个单独参数</td>
+</tr>
+<tr>
+<td><code>&quot;$*&quot;</code></td>
+<td>加引号后，所有参数被拼接成一个整体，保留空格或其他分隔符</td>
+<td>一个完整的字符串</td>
+</tr>
+<tr>
+<td>“$@”</td>
+<td>每个参数是独立的，保持原样</td>
+<td>分裂后的多个单独参数</td>
+</tr>
+</tbody></table>
+<p>C++风格</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">for (( 初始化; 条件; 更新 ))<br>do<br>    commands<br>done<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">while [ 条件 ]<br>do<br>    commands<br>done<br></code></pre></td></tr></table></figure>
+
+<p><img src="/images%5C2024-12-17-11.png" srcset="/img/loading.gif" lazyload alt="2024-12-17-11"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/" class="category-chain-item">学习日志</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/" class="print-no-link">#学习日志</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2024-12-17</div>
+      <div>http://example.com/2024/12/17/2024-12-17/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>llj</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年12月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/12/17/C++%E9%9D%A2%E7%BB%8F/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/12/13/2024-12-13/" title="2024-12-13">
+                        <span class="hidden-mobile">2024-12-13</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"L2jMVtto719vdWpNEHqfbPQl-gzGzoHsz","appKey":"bQd69eujwwZdjhfDnbRKWGcJ","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

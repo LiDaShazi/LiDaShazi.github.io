@@ -1,0 +1,1155 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="llj">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="笔记GIT文件有三种状态 分别是未跟踪,未提交,已提交 $ git config –global user.name “OI Wiki”  $ git config –global user.email &#x6f;&#105;&#45;&#119;&#105;&#x6b;&#x69;&#64;&#101;&#120;&#97;&#109;&#x70;&#x6c;&#x65;&#46;&#x63;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记">
+<meta property="og:url" content="http://example.com/2025/02/26/%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="LiDaShazi">
+<meta property="og:description" content="笔记GIT文件有三种状态 分别是未跟踪,未提交,已提交 $ git config –global user.name “OI Wiki”  $ git config –global user.email &#x6f;&#105;&#45;&#119;&#105;&#x6b;&#x69;&#64;&#101;&#120;&#97;&#109;&#x70;&#x6c;&#x65;&#46;&#x63;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="d:\files\%E5%9B%BE%E7%89%87\Snipaste_2024-09-28_18-20-19.png">
+<meta property="og:image" content="d:\files\%E5%9B%BE%E7%89%87\%E5%AD%A6%E4%B9%A0\Snipaste_2024-10-23_13-46-28.png">
+<meta property="og:image" content="d:\files\%E5%9B%BE%E7%89%87\%E5%AD%A6%E4%B9%A0\Snipaste_2024-10-23_13-47-13.png">
+<meta property="og:image" content="d:\files\%E5%9B%BE%E7%89%87\%E5%AD%A6%E4%B9%A0\Snipaste_2024-10-23_14-51-21.png">
+<meta property="og:image" content="d:\files\%E5%9B%BE%E7%89%87\%E5%AD%A6%E4%B9%A0\Snipaste_2024-10-23_15-08-42.png">
+<meta property="og:image" content="d:\files\%E5%9B%BE%E7%89%87\%E5%AD%A6%E4%B9%A0\Snipaste_2024-10-23_15-16-35.png">
+<meta property="og:image" content="d:\files\%E5%9B%BE%E7%89%87\%E5%AD%A6%E4%B9%A0\Snipaste_2024-10-23_15-20-35.png">
+<meta property="og:image" content="d:\files\%E5%9B%BE%E7%89%87\%E5%AD%A6%E4%B9%A0\Snipaste_2024-10-23_16-42-07.png">
+<meta property="article:published_time" content="2025-02-25T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-02T08:40:12.002Z">
+<meta property="article:author" content="llj">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="d:\files\%E5%9B%BE%E7%89%87\Snipaste_2024-09-28_18-20-19.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>笔记 - LiDaShazi</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"L2jMVtto719vdWpNEHqfbPQl-gzGzoHsz","app_key":"bQd69eujwwZdjhfDnbRKWGcJ","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>LiDaShazi</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-26 00:00" pubdate>
+          2025年2月26日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          69 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h1><h4 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h4><p>文件有三种状态 分别是未跟踪,未提交,已提交</p>
+<p>$ git config –global user.name “OI Wiki” </p>
+<p>$ git config –global user.email <a href="mailto:&#x6f;&#105;&#45;&#119;&#105;&#x6b;&#x69;&#64;&#101;&#120;&#97;&#109;&#x70;&#x6c;&#x65;&#46;&#x63;&#x6f;&#x6d;">&#x6f;&#105;&#45;&#119;&#105;&#x6b;&#x69;&#64;&#101;&#120;&#97;&#109;&#x70;&#x6c;&#x65;&#46;&#x63;&#x6f;&#x6d;</a></p>
+<p>git init</p>
+<p>$ git clone <a target="_blank" rel="noopener" href="https://github.com/OI-wiki/OI-wiki">https://github.com/OI-wiki/OI-wiki</a>  把一个仓库拷贝到本地</p>
+<p>git status 查询当前状态</p>
+<p>git add +文件名字 </p>
+<p>git commit +文件名字 -m表示添加提交的信息</p>
+<p>前两者不加文件表示对所有文件执行</p>
+<p>为了不将一些文件纳入跟踪,可以创建<code>.gitignore</code>文件 </p>
+<p>例如，<code>*.exe</code> 将自动忽略仓库里的所有扩展名为 <code>.exe</code> 的文件。</p>
+<p>git log 查看当前提交记录</p>
+<p>head指针指向当前分支</p>
+<p>git branch 查看分支  加上名称可以创建新分支</p>
+<p>git Switch 切换分支 -c表示创建并切换</p>
+<p>*指向的分支是当前分支</p>
+<p>可以理解为按照时间线为当前节点创建一个快照</p>
+<p>git merge +分支名称 将该分支合并到当前分支上</p>
+<p>git branch -d   +分支名称 删除分支</p>
+<p>如果在两个分支中，对同一个文件的同一部分进行了不同的更改，Git 就无法自动合并这两个分支，也就是发生了合并冲突。</p>
+<p><img src="D:\files\图片\Snipaste_2024-09-28_18-20-19.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-09-28_18-20-19"></p>
+<p>Sqash压缩合并:B-&gt;A</p>
+<p>merge合并会将B分支的所有commit并入A分支的提交历史中</p>
+<p>squash会把B分支的commit合并为一次commit提交到A分支中</p>
+<p>git merge B –squash</p>
+<p>此时只将B分支存入了A的缓存区中,之后还需要git commit</p>
+<p>Rebase(变基)</p>
+<p>就相当于从未有过B分支,只是在A分支上进行修改</p>
+<p>git checkout&#x2F;&#x2F;应该和Switch是一样的 B git rebase A git checkout A git merge B</p>
+<p>git remote 查看当前仓库的远程仓库列表</p>
+<p>origin代表克隆用的链接</p>
+<p>$ git remote show origin 查看详细信息</p>
+<p>执行 <code>git remote add &lt;name&gt; &lt;url&gt;</code> 命令可以添加一个名字为 <code>name</code>，链接为 <code>url</code> 的远程仓库。</p>
+<p>执行 <code>git remote rename &lt;oldname&gt; &lt;newname&gt;</code> 可以将名字为 <code>oldname</code> 的远程仓库改名为 <code>newname</code>。</p>
+<p>执行 <code>git remote rm &lt;name&gt;</code> 可以删除名字为 <code>name</code> 的远程仓库。</p>
+<p>执行 <code>git remote get-url &lt;name&gt;</code> 可以查看名字为 <code>name</code> 的远程仓库的链接。</p>
+<p>执行 <code>git remote set-url &lt;name&gt; &lt;newurl&gt;</code> 可以将名字为 <code>name</code> 的远程仓库的链接更改为 <code>newurl</code>。</p>
+<p>$ git fetch <remote-name> # 获取 <remote-name> 的更改</p>
+<p>$ git pull <remote-name> <branch> # 获取 <remote-name> 的更改，然后将这些更改合并到 HEAD</p>
+<p>$ git push <remote-name> <from>:<to> # 将本地 <from> 分支的更改推送至 <remote-name> 的 <to> 分支</p>
+<p>根据远程仓库的要求，可能会要求你输入远程仓库账户的用户名和密码。</p>
+<p>需要注意的是，你的更改能成功推送，需要满足两个条件：你拥有向这个仓库（分支）的写入权限，且你的这个分支比远程仓库的相应分支新（可以理解为没有人在你进行更改的这段时间进行了推送）。当远程分支有当前分支没有的新更改时，可以执行 <code>git pull</code> 命令完成合并再提交</p>
+<h2 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h2><p>谓词,谓词就是返回值为真或者假的函数  可以用函数对象来实现</p>
+<ul>
+<li><strong>栈</strong>(<code>stack</code>) 后进先出 (LIFO) 的容器，默认是对双端队列（<code>deque</code>）的包装。</li>
+<li><strong>队列</strong>(<code>queue</code>) 先进先出 (FIFO) 的容器，默认是对双端队列（<code>deque</code>）的包装。</li>
+<li><strong>优先队列</strong>(<code>priority_queue</code>) 元素的次序是由作用于所存储的值对上的某种谓词决定的的一种队列，默认是对向量（<code>vector</code>）的包装。</li>
+</ul>
+<p><code>array</code> 实际上是 STL 对数组的封装。它相比 <code>vector</code> 牺牲了动态扩容的特性，但是换来了与原生数组几乎一致的性能（在开满优化的前提下）。因此如果能使用 C++11 特性的情况下，能够使用原生数组的地方几乎都可以直接把定长数组都换成 <code>array</code>，而动态分配的数组可以替换为 <code>vector</code>。</p>
+<h3 id="list"><a href="#list" class="headerlink" title="list"></a>list</h3><h5 id="1-splice"><a href="#1-splice" class="headerlink" title="1. splice()"></a>1. <strong>splice()</strong></h5><ul>
+<li><strong>用途</strong>：将一个 <code>list</code> 的部分或全部元素插入到另一个 <code>list</code> 的指定位置。</li>
+<li><strong>场景</strong>：当你需要高效地移动元素而不进行复制或重新分配时，例如从一个列表中移除某些元素并将其添加到另一个列表。</li>
+</ul>
+<h5 id="2-remove"><a href="#2-remove" class="headerlink" title="2. remove()"></a>2. <strong>remove()</strong></h5><ul>
+<li><strong>用途</strong>：移除列表中所有与给定值相等的元素。</li>
+<li><strong>场景</strong>：需要清理列表中的特定值，如去掉所有的特定错误代码或标记。</li>
+</ul>
+<h5 id="3-sort"><a href="#3-sort" class="headerlink" title="3. sort()"></a>3. <strong>sort()</strong></h5><ul>
+<li><strong>用途</strong>：对 <code>list</code> 中的元素进行排序。</li>
+<li><strong>场景</strong>：在处理大量动态数据时，需要对列表进行排序，而不需要随机访问的情况下（如用户输入的任务列表）。</li>
+</ul>
+<h5 id="4-unique"><a href="#4-unique" class="headerlink" title="4. unique()"></a>4. <strong>unique()</strong></h5><ul>
+<li><strong>用途</strong>：移除连续重复的元素。</li>
+<li><strong>场景</strong>：在处理数据流时，可能需要消除连续的重复数据，如去重用户输入或日志中的相同事件。</li>
+</ul>
+<h5 id="5-merge"><a href="#5-merge" class="headerlink" title="5. merge()"></a>5. <strong>merge()</strong></h5><ul>
+<li><strong>用途</strong>：将两个已排序的 <code>list</code> 合并成一个有序的 <code>list</code>。</li>
+<li><strong>场景</strong>：在合并两个结果集时，例如将两个不同来源的任务列表合并为一个，同时保持顺序。</li>
+</ul>
+<p>set</p>
+<p><code>set</code> 是关联容器，含有键值类型对象的已排序集，搜索、移除和插入拥有对数复杂度。<code>set</code> 内部通常采用 <a target="_blank" rel="noopener" href="https://oi-wiki.org/ds/rbtree/">红黑树</a> 实现。<a target="_blank" rel="noopener" href="https://oi-wiki.org/ds/bst/">平衡二叉树</a> 的特性使得 <code>set</code> 非常适合处理需要同时兼顾查找、插入与删除的情况。</p>
+<ul>
+<li><p><code>insert(x)</code> 当容器中没有等价元素的时候，将元素 x 插入到 <code>set</code> 中。</p>
+</li>
+<li><p><code>erase(x)</code> 删除值为 x 的 <strong>所有</strong> 元素，返回删除元素的个数。</p>
+</li>
+<li><p><code>erase(pos)</code> 删除迭代器为 pos 的元素，要求迭代器必须合法。</p>
+</li>
+<li><p><code>erase(first,last)</code> 删除迭代器在 ![<a href="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">first,last)</a> 范围内的所有元素。</p>
+</li>
+<li><p><code>clear()</code> 清空 <code>set</code>。</p>
+</li>
+<li><p><code>count(x)</code> 返回 <code>set</code> 内键为 x 的元素数量。</p>
+</li>
+<li><p><code>find(x)</code> 在 <code>set</code> 内存在键为 x 的元素时会返回该元素的迭代器，否则返回 <code>end()</code>。</p>
+</li>
+<li><p><code>lower_bound(x)</code> 返回指向首个不小于给定键的元素的迭代器。如果不存在这样的元素，返回 <code>end()</code>。</p>
+</li>
+<li><p><code>upper_bound(x)</code> 返回指向首个大于给定键的元素的迭代器。如果不存在这样的元素，返回 <code>end()</code>。</p>
+</li>
+<li><p><code>empty()</code> 返回容器是否为空。</p>
+</li>
+<li><p><code>size()</code> 返回容器内元素个数。</p>
+</li>
+</ul>
+<p><code>set</code> 自带的 <code>lower_bound</code> 和 <code>upper_bound</code> 的时间复杂度为 logn。</p>
+<p>但使用 <code>algorithm</code> 库中的 <code>lower_bound</code> 和 <code>upper_bound</code> 函数对 <code>set</code> 中的元素进行查询，时间复杂度为 n。</p>
+<p><code>set</code> 没有提供自带的 <code>nth_element</code>。使用 <code>algorithm</code> 库中的 <code>nth_element</code> 查找第 k大的元素时间复杂度为n。</p>
+<p>如果需要实现平衡二叉树所具备的logn查找第k大元素的功能，需要自己手写平衡二叉树或权值线段树，或者选择使用 pb_ds 库中的平衡二叉树。</p>
+<p>map</p>
+<p>在利用下标访问 <code>map</code> 中的某个元素时，如果 <code>map</code> 中不存在相应键的元素，会自动在 <code>map</code> 中插入一个新元素，并将其值设置为默认值（对于整数，值为零；对于有默认构造函数的类型，会调用默认构造函数进行初始化）。</p>
+<p>当下标访问操作过于频繁时，容器中会出现大量无意义元素，影响 <code>map</code> 的效率。因此一般情况下推荐使用 <code>find()</code> 函数来寻找特定键的元素。</p>
+<ul>
+<li><code>count(x)</code>: 返回容器内键为 x 的元素数量。复杂度为 <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" srcset="/img/loading.gif" lazyload alt="O(\log(size)+ans)">（关于容器大小对数复杂度，加上匹配个数）。</li>
+<li><code>find(x)</code>: 若容器内存在键为 x 的元素，会返回该元素的迭代器；否则返回 <code>end()</code>。</li>
+<li><code>lower_bound(x)</code>: 返回指向首个不小于给定键的元素的迭代器。</li>
+<li><code>upper_bound(x)</code>: 返回指向首个大于给定键的元素的迭代器。若容器内所有元素均小于或等于给定键，返回 <code>end()</code>。</li>
+<li><code>empty()</code>: 返回容器是否为空。</li>
+<li><code>size()</code>: 返回容器内元素个数</li>
+</ul>
+<p>stl算法</p>
+<ul>
+<li><code>sort</code>：排序。<code>sort(v.begin(), v.end(), cmp)</code> 或 <code>sort(a + begin, a + end, cmp)</code>，其中 <code>end</code> 是排序的数组最后一个元素的后一位，<code>cmp</code> 为自定义的比较函数。</li>
+<li><code>stable_sort</code>：稳定排序，用法同 <code>sort()</code>。</li>
+<li><code>nth_element</code>：按指定范围进行分类，即找出序列中第 <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" srcset="/img/loading.gif" lazyload alt="n"> 大的元素，使其左边均为小于它的数，右边均为大于它的数。<code>nth_element(v.begin(), v.begin() + mid, v.end(), cmp)</code> 或 <code>nth_element(a + begin, a + begin + mid, a + end, cmp)</code>。</li>
+<li><code>binary_search</code>：二分查找。<code>binary_search(v.begin(), v.end(), value)</code>，其中 <code>value</code> 为需要查找的值</li>
+<li><code>merge</code>：将两个（已排序的）序列 <strong>有序合并</strong> 到第三个序列的 <strong>插入迭代器</strong> 上。<code>merge(v1.begin(), v1.end(), v2.begin(), v2.end() ,back_inserter(v3))</code>。</li>
+<li><code>inplace_merge</code>：将两个（已按小于运算符排序的）：<code>[first,middle), [middle,last)</code> 范围 <strong>原地合并为一个有序序列</strong>。<code>inplace_merge(v.begin(), v.begin() + middle, v.end())</code>。</li>
+</ul>
+<p><code>shuffle</code> 函数代替原来的 <code>random_shuffle</code>。使用方法为 <code>shuffle(v.begin(), v.end(), rng)</code>（最后一个参数传入的是使用的随机数生成器，一般情况使用以真随机数生成器 <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/numeric/random/random_device"><code>random_device</code></a> 播种的梅森旋转伪随机数生成器 <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine"><code>mt19937</code></a>）。</p>
+<ul>
+<li><code>next_permutation</code>：将当前排列更改为 <strong>全排列中的下一个排列</strong>。如果当前排列已经是 <strong>全排列中的最后一个排列</strong>（<code>元素完全从大到小排列</code>），函数返回 <code>false</code> 并将排列更改为 <strong>全排列中的第一个排列</strong>（元素完全从小到大排列）；否则，函数返回 <code>true</code>。<code>next_permutation(v.begin(), v.end())</code> 或 <code>next_permutation(v + begin, v + end)</code>。</li>
+<li><code>prev_permutation</code>：将当前排列更改为 <strong>全排列中的上一个排列</strong>。用法同 <code>next_permutation</code>。</li>
+<li><code>partial_sum</code>：求前缀和。 <code>partial_sum(src.begin(), src.end(), back_inserter(dst))</code>。</li>
+</ul>
+<p>bitset</p>
+<p>std::bitset&lt;1000&gt; bs;  需要指定大小</p>
+<ul>
+<li><code>bitset()</code>: 每一位都是 <code>false</code>。</li>
+<li><code>bitset(unsigned long val)</code>: 设为 <code>val</code> 的二进制形式。</li>
+<li><code>bitset(const string&amp; str)</code>: 设为 <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" srcset="/img/loading.gif" lazyload alt="01"> 串 <code>str</code>。</li>
+</ul>
+<p>成员函数</p>
+<ul>
+<li><code>count()</code>: 返回 <code>true</code> 的数量。</li>
+<li><code>size()</code>: 返回 <code>bitset</code> 的大小。</li>
+<li><code>test(pos)</code>: 它和 <code>vector</code> 中的 <code>at()</code> 的作用是一样的，和 <code>[]</code> 运算符的区别就是越界检查。</li>
+<li><code>any()</code>: 若存在某一位是 <code>true</code> 则返回 <code>true</code>，否则返回 <code>false</code>。</li>
+<li><code>none()</code>: 若所有位都是 <code>false</code> 则返回 <code>true</code>，否则返回 <code>false</code>。</li>
+<li><code>all()</code>: 若所有位都是 <code>true</code> 则返回 <code>true</code>，否则返回 <code>false</code>。</li>
+<li><ol>
+<li><code>set()</code>: 将整个 <code>bitset</code> 设置成 <code>true</code>。</li>
+<li><code>set(pos, val = true)</code>: 将某一位设置成 <code>true</code>&#x2F;<code>false</code>。</li>
+</ol>
+</li>
+<li><ol>
+<li><code>reset()</code>: 将整个 <code>bitset</code> 设置成 <code>false</code>。</li>
+<li><code>reset(pos)</code>: 将某一位设置成 <code>false</code>。相当于 <code>set(pos, false)</code>。</li>
+</ol>
+</li>
+<li><ol>
+<li><code>flip()</code>: 翻转每一位。(相当于异或一个全是1的 <code>bitset</code>）</li>
+<li><code>flip(pos)</code>: 翻转某一位。</li>
+</ol>
+</li>
+<li><code>to_string()</code>: 返回转换成的字符串表达。</li>
+<li><code>to_ulong()</code>: 返回转换成的 <code>unsigned long</code> 表达（<code>long</code> 在 NT 及 32 位 POSIX 系统下与 <code>int</code> 一样，在 64 位 POSIX 下与 <code>long long</code> 一样）。</li>
+<li><code>to_ullong()</code>:（<strong>C++11</strong> 起）返回转换成的 <code>unsigned long long</code> 表达。</li>
+<li></li>
+</ul>
+<p>另外，libstdc++ 中有一些较为实用的内部成员函数<a target="_blank" rel="noopener" href="https://oi-wiki.org/lang/csl/bitset/#fn:bitset1">1</a>：</p>
+<ul>
+<li><code>_Find_first()</code>: 返回 <code>bitset</code> 第一个 <code>true</code> 的下标，若没有 <code>true</code> 则返回 <code>bitset</code> 的大小。</li>
+<li><code>_Find_next(pos)</code>: 返回 <code>pos</code> 后面（下标严格大于 <code>pos</code> 的位置）第一个 <code>true</code> 的下标，若 <code>pos</code> 后面没有 <code>true</code> 则返回 <code>bitset</code> 的大小。</li>
+</ul>
+<p>string</p>
+<p>string有两个成员函数能够将自己转换为 char 指针——<code>data()</code>&#x2F;c_str() <code>c_str()</code> 保证末尾有空字符，而 <code>data()</code> 则不保证</p>
+<p><code>find(str,pos)</code> 函数可以用来查找字符串中一个字符&#x2F;字符串在 <code>pos</code>（含）之后第一次出现的位置（若不传参给 <code>pos</code> 则默认为 <code>0</code>）。如果没有出现，则返回 <code>string::npos</code>（被定义为 <code>-1</code>，但类型仍为 <code>size_t</code>&#x2F;<code>unsigned long</code>）。</p>
+<p><code>substr(pos, len)</code> 函数的参数返回从 <code>pos</code> 位置开始截取最多 <code>len</code> 个字符组成的字符串（如果从 <code>pos</code> 开始的后缀长度不足 <code>len</code> 则截取这个后缀）。</p>
+<p><code>insert(index,count,ch)</code> 和 <code>insert(index,str)</code> 是比较常见的插入函数。它们分别表示在 <code>index</code> 处连续插入 <code>count</code> 次字符串 <code>ch</code> 和插入字符串 <code>str</code>。</p>
+<p><code>erase(index,count)</code> 函数将字符串 <code>index</code> 位置开始（含）的 <code>count</code> 个字符删除（若不传参给 <code>count</code> 则表示删去 <code>index</code> 位置及以后的所有字符）。</p>
+<p><code>replace(pos,count,str)</code> 和 <code>replace(first,last,str)</code> 是比较常见的替换函数。它们分别表示将从 <code>pos</code> 位置开始 <code>count</code> 个字符的子串替换为 <code>str</code> 以及将以 <code>first</code> 开始（含）、<code>last</code> 结束（不含）的子串替换为 <code>str</code>，其中 <code>first</code> 和 <code>last</code> 均为迭代器。</p>
+<p>将字符串 s 的第 3~7 位替换为空串后得到的字符串是 OI 将字符串 s 的前两位替换为 NOI 后得到的字符串是 NOI</p>
+<p>左值是有内存地址的对象，而右值只是一个中间计算结果（虽然编译器往往需要在内存中分配地址来储存这个值，但这个内存地址是无法被程序员感知的，所以可以认为它不存在）。中间计算结果就意味着这个值马上就没用了，以后不会再访问它。</p>
+<p>在大多数情况下，数组名（例如 <code>arr</code>）表示的是整个数组。它可以隐式转换为指向数组首个元素的指针，但这并不意味着它本身就是一个指针。</p>
+<p><strong>隐式转换</strong>：当你在表达式中使用数组名时，编译器会自动将其视为指向数组首个元素的指针。例如，<code>arr</code> 在大多数上下文中会被视为 <code>&amp;arr[0]</code>。</p>
+<p><strong>取地址运算符</strong> <code>&amp;</code>：对数组名使用取地址运算符 <code>&amp;</code>，会得到整个数组的地址，而不仅仅是首个元素的地址。</p>
+<p><strong>左值引用</strong>：适用于需要访问和修改已有对象的情况。</p>
+<p><strong>右值引用</strong>：适用于处理临时对象，提供资源管理的优化手段，减少不必要的复制。</p>
+<p><strong>一个对象被移动后不应对其进行任何操作，无论是修改还是访问</strong></p>
+<p><code>#ifdef</code> 之后通常会跟一个宏名，如果该宏已被定义，则编译器会编译 <code>#ifdef</code> 和相应的 <code>#endif</code> 之间的代码。</p>
+<p>如果该宏未被定义，编译器会忽略这些代码。</p>
+<p>[capture] (parameters) mutable -&gt; return-type {statement}</p>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法:"></a>算法:</h3><p>递归</p>
+<p>int func(传入数值) {  </p>
+<p>if (终止条件) return 最小子问题解;  </p>
+<p>return func(缩小规模); }</p>
+<p>分治算法的核心思想就是「分而治之」。</p>
+<p>大概的流程可以分为三步：分解 -&gt; 解决 -&gt; 合并。</p>
+<ol>
+<li>分解原问题为结构相同的子问题。</li>
+<li>分解到某个容易求解的边界之后，进行递归求解。</li>
+<li>将子问题的解合并成原问题的解。</li>
+</ol>
+<p>分治法能解决的问题一般有如下特征：</p>
+<ul>
+<li>该问题的规模缩小到一定的程度就可以容易地解决。</li>
+<li>该问题可以分解为若干个规模较小的相同问题，即该问题具有最优子结构性质，利用该问题分解出的子问题的解可以合并为该问题的解。</li>
+<li>该问题所分解出的各个子问题是相互独立的，即子问题之间不包含公共的子问题。</li>
+<li>如果各子问题是不独立的，则分治法要重复地解公共的子问题，也就做了许多不必要的工作。此时虽然也可用分治法，但一般用 <a target="_blank" rel="noopener" href="https://oi-wiki.org/dp/basic/">动态规划</a> 较好。</li>
+</ul>
+<p><strong>分解 -&gt; 解决（触底）-&gt; 合并（回溯）</strong></p>
+<p><strong>明白一个函数的作用并相信它能完成这个任务，千万不要跳进这个函数里面企图探究更多细节，</strong> 否则就会陷入无穷的细节无法自拔，人脑能压几个栈啊。</p>
+<p>周赛</p>
+<p>3306</p>
+<p>出现次数为k&#x3D;出现次数至少为k-出现至少次数为k+1</p>
+<p>由于满足子串越长,越满足要求,使用滑动窗口</p>
+<p>右指针依次递增,当满足要求时</p>
+<p>向右移动左指针,首次不满足时,代表了左边可以省去的字符个数</p>
+<p>随后结果加上左指针的合理性在于</p>
+<p>右边的字符是满足要求的,即使加上左边的依旧满足要求</p>
+<p>根本思想是先确定一个满足要求最长的串(尾数一定),在找比它长的串有多少</p>
+<p>3307</p>
+<p>递归:</p>
+<p>数量每次都*2,找子问题与边界</p>
+<p>1LL &lt;&lt; n表示2^n</p>
+<p>明白每个函数能做的事，并相信他们能够完成–递归</p>
+<p>三种创建对象的方式</p>
+<p>MyClass obj1;         &#x2F;&#x2F; 默认构造    </p>
+<p>MyClass obj2(10);    &#x2F;&#x2F; 参数化构造    </p>
+<p>MyClass* obj3 &#x3D; new MyClass(20);  &#x2F;&#x2F; 动态创建</p>
+<p>链表,可以创建一个虚拟头指针,防止头指针为空的情况</p>
+<p>且可以更好的处理头指针,防止频繁跟换头指针</p>
+<p>删除某个指针,其实就是将前面那个节点的后指针移动</p>
+<p>删除某个指针,可以将后面的那个指针放到这个位置,并删除后面那个节点</p>
+<p> 链表解题经典三板斧，哑巴节点，栈，快慢指针。哑巴节点一般是为了处理头尾节点用的。dummy</p>
+<p><code>private</code>：只有类内部成员函数能访问。</p>
+<p><code>protected</code>：派生类和类内部成员函数都能访问。</p>
+<p><code>public</code>：任何代码都能访问。</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs perl"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">QPaintEvent</span></span>;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>这是前向声明（forward declaration）。它告诉编译器 <code>QPaintEvent</code> 是一个类，但没有提供详细定义。</li>
+<li>前向声明常用于减少头文件依赖，减少编译时间。这里它表明我们在类声明中会用到 <code>QPaintEvent*</code> 指针，而不需要包含完整的 <code>QPaintEvent</code> 头文件。</li>
+</ul>
+<p><code>Q_OBJECT</code> 是一个宏，用于启用 Qt 的信号和槽机制。它必须出现在所有包含信号和槽的类中，它让类具有动态属性、信号与槽等功能。</p>
+<p>递归的题注意一种情况是否影响另一种情况</p>
+<p>记忆化搜索,每次记录已经计算的值</p>
+<p>能用动态规划解决的问题，需要满足三个条件：最优子结构，无后效性和子问题重叠。</p>
+<p>114, 先用链表存储节点</p>
+<p>移动可以用反转来考虑,全反转,前k个反转,后n-k个反转</p>
+<p>92 注意指针结束的位置与相互关系</p>
+<p>注意不要修改后面要用的变量</p>
+<p>86</p>
+<p>因为是链表而不是数组，构建子链不增加空间复杂度。勇敢地构造子链即可，无需考虑节点交换。</p>
+<p>遍历结束后，我们将 <em>large</em> 的 <em>next</em> 指针置空，这是因为当前节点复用的是原链表的节点，而其 <em>next</em> 指针可能指向一个小于 <em>x</em> 的节点</p>
+<p>我们在建造链表时一定要牢记，最后一个节点一定要有所指向，是头结点形成循环链表也好，指向一个NULL值也好。 总而言之是不可以空着的！</p>
+<p>环形链表</p>
+<p>假想「乌龟」和「兔子」在链表上移动，「兔子」跑得快，「乌龟」跑得慢。当「乌龟」和「兔子」从链表上的同一个节点开始移动时，如果该链表中没有环，那么「兔子」将一直处于「乌龟」的前方；如果该链表中有环，那么「兔子」会先于「乌龟」进入环，并且一直在环内移动。等到「乌龟」进入环时，由于「兔子」的速度快，它一定会在某个时刻与乌龟相遇，即套了「乌龟」若干圈。</p>
+<p>相交链表</p>
+<p>计算各个链表的长度</p>
+<p>532</p>
+<p>由于集合不重复,可以直接多放几个</p>
+<p>在 C++ 中使用 <code>std::map&lt;int, int&gt;</code> 并尝试访问一个尚未存在的键时，C++ 会自动为这个键插入一个默认值。对于 <code>int</code> 类型的值，默认值是 <code>0</code>。</p>
+<p>注意递归是否能够出来</p>
+<p>前驱,和后继</p>
+<p>350</p>
+<p>得到hash表后,可以随着操作的进行逐渐对hash表键值进行修改</p>
+<p>609</p>
+<p>熟练掌握string的分割</p>
+<p>454</p>
+<p>看到形如：A+B….+N&#x3D;0的式子，要转换为(A+…T)&#x3D;-((T+1)…+N)再计算，这个T的分割点一般是一半，特殊情况下需要自行判断。定T是解题的关键。</p>
+<p>560</p>
+<p><strong>滑动窗口算法</strong>本质上是用来解决<strong>和大于等于</strong>某个值的问题</p>
+<p>滑动窗口计算子数组和大于等于 <code>k</code> 或 <code>k + 1</code> 的子数组个数。但是滑动窗口算法的基本假设是，当窗口内的和大于等于 <code>k</code> 时，可以通过移动左边界来缩小窗口。然而，对于和为 <code>k</code> 的子数组问题，尤其是带有负数的情况下，这种方法会导致窗口的和出现波动，进而无法正确找到和为 <code>k</code> 的子数组。</p>
+<p>代码实现时，通常来说「枚举右，寻找左」是更加好写的。</p>
+<p>前缀和来处理</p>
+<p>计算 <em>nums</em>2[<em>i</em>] 的<strong>下一个更大元素</strong>的值（注意是值不是下标），这是单调栈的标准应用</p>
+<p>从右往左是加入有用的数</p>
+<p>从左往右是去掉无用的数</p>
+<p>当思路不明确是,先想一想暴力解法</p>
+<p>1209</p>
+<p>栈中就保存计数器,对原数组进行操作</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function">stringstream <span class="hljs-title">ss</span><span class="hljs-params">(logs[i])</span></span>;<br>string segment;<br>vector&lt;string&gt; parts;<br><br><span class="hljs-comment">// 使用getline函数，按&#x27;:&#x27;进行分割</span><br><span class="hljs-keyword">while</span> (<span class="hljs-built_in">getline</span>(ss, segment, <span class="hljs-string">&#x27;:&#x27;</span>)) &#123;<br>    parts.<span class="hljs-built_in">push_back</span>(segment);<br>&#125;<br><br><span class="hljs-type">int</span> id = <span class="hljs-built_in">stoi</span>(parts[<span class="hljs-number">0</span>]); <span class="hljs-comment">// 将第一个部分转换为int</span><br>string way = parts[<span class="hljs-number">1</span>]; <span class="hljs-comment">// 第二个部分是string</span><br><span class="hljs-type">int</span> time = <span class="hljs-built_in">stoi</span>(parts[<span class="hljs-number">2</span>]); <span class="hljs-comment">// 将第三个部分转换为int</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">char</span> type[<span class="hljs-number">10</span>];<br><span class="hljs-type">int</span> idx, timestamp;<br><span class="hljs-built_in">sscanf</span>(log.<span class="hljs-built_in">c_str</span>(), <span class="hljs-string">&quot;%d:%[^:]:%d&quot;</span>, &amp;idx, type, &amp;timestamp);<br></code></pre></td></tr></table></figure>
+
+
+
+<p>用不着每次比较时候都&#x2F;2，最后返回答案的时候&#x2F;2即可</p>
+<p>32.最长有效括号</p>
+<p>1.动态规划</p>
+<p>考虑以每一个字符为结尾的情况,如何根据已有的知识计算现在的值</p>
+<p>2.栈匹配</p>
+<p>将起点位置压栈,始终保持栈底元素为当前已经遍历过的元素中「最后一个没有被匹配的右括号的下标」</p>
+<p>3.双向匹配</p>
+<p>因为只有两种字符,贪心地考虑了以当前字符下标结尾的有效括号长度，每次当右括号数量多于左括号数量的时候之前的字符我们都扔掉不再考虑，重新从下一个字符开始计算，但这样会漏掉一种情况，就是遍历的时候左括号的数量始终大于右括号的数量，即 (() ，这种时候最长有效括号是求不出来的。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">stk.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">atoi</span>(token.<span class="hljs-built_in">c_str</span>()));<br></code></pre></td></tr></table></figure>
+
+
+
+<p>基本计算器1</p>
+<p>+- 与()全是二元</p>
+<p>由于字符串除了数字与括号外，只有加号和减号两种运算符。</p>
+<p>由于数字不会发生变化,从前往后遍历进行计算,记录当前的符号即可</p>
+<p>每个左括号出现表示记录一下当前括号的符号</p>
+<p>基本计算器2</p>
+<p>+-*&#x2F;全是二元</p>
+<p>只需将乘除的式子结果算出来就行了,于是就压带符号的数字</p>
+<p>移动应用开发基础结构</p>
+<p>第一阶:交互界面,网络协议,数据存储</p>
+<p>第二阶:终端安全,音频视频多媒体,性能稳定性,外设前沿技术</p>
+<p>ZIP文件是一种常见的<strong>压缩文件格式</strong>，用于减少文件或文件夹的大小，方便存储和传输。ZIP文件通过<strong>压缩算法</strong>将多个文件打包到一个单独的文件中，同时减少文件的大小。压缩后的文件体积更小，这样可以节省存储空间或加快传输速度。</p>
+<p><strong>文件结构</strong>：JAR和APK文件本质上都基于ZIP格式，但它们有特定的用途和内容结构。</p>
+<ul>
+<li><strong>JAR</strong>文件是为<strong>Java程序</strong>打包和分发设计的。</li>
+<li><strong>APK</strong>文件则是为<strong>Android应用程序</strong>打包和安装设计的。</li>
+</ul>
+<p>可执行代码文件classes[N].dex 与exe文件类似</p>
+<p>res与resources.arsc文件</p>
+<p>扩展资源assets</p>
+<p>Native共享库lib</p>
+<h3 id="res与resources-arsc的关系："><a href="#res与resources-arsc的关系：" class="headerlink" title="res与resources.arsc的关系："></a><code>res</code>与<code>resources.arsc</code>的关系：</h3><ul>
+<li><strong>编译过程</strong>：<code>res</code>文件夹中的资源在编译过程中，<strong>未编译的资源文件</strong>（如图片）直接打包进APK中，而<strong>编译后的资源</strong>（如字符串、颜色等）则会被打包进<code>resources.arsc</code>文件中。</li>
+<li><strong>资源查找机制</strong>：当应用运行时，如果需要访问资源（例如加载一张图片或一个字符串），系统首先根据资源ID在<code>resources.arsc</code>文件中查找。如果是预编译的资源（如字符串、颜色），系统直接从<code>resources.arsc</code>中读取；如果是未编译的资源（如图片），则会从<code>res</code>文件夹中找到并加载。</li>
+</ul>
+<p><strong>65535限制</strong>在计算机科学中出现于多个不同的领域，通常与数据的最大数量有关，原因是65535（即<strong>2^16 - 1</strong>）是一个16位无符号整数所能表示的最大值。</p>
+<h3 id="Android-65535-方法数限制（方法数限制-DEX-64K-限制）"><a href="#Android-65535-方法数限制（方法数限制-DEX-64K-限制）" class="headerlink" title="Android 65535 方法数限制（方法数限制&#x2F;DEX 64K 限制）"></a><strong>Android 65535 方法数限制（方法数限制&#x2F;<code>DEX</code> 64K 限制）</strong></h3><ul>
+<li><strong>背景</strong>：在Android应用中，编译生成的字节码会被打包成<strong>DEX文件</strong>（Dalvik Executable），这个文件是Android运行时加载并执行的主要文件。DEX文件有一个限制：它的一个索引表（Method ID）只能存放<strong>最多65535个方法</strong>。</li>
+<li><strong>原因</strong>：DEX文件格式使用16位的索引来表示方法，这意味着一个DEX文件最多可以包含65535个方法（包括所有类和库中的方法）。</li>
+<li><strong>解决办法</strong>：如果应用的代码规模超过这个限制（比如使用了大量的第三方库），就会导致“64K方法数”问题。为了解决这个问题，可以使用<strong>MultiDex</strong>技术，将应用拆分成多个DEX文件，避免方法数超限。</li>
+</ul>
+<p>程序应用生命周期用四大组件进行封装:Activity,Service,BroadcastReceiver,ContentProvider</p>
+<p>微信1.0</p>
+<p>登录模块,主界面,聊天功能,消息推送</p>
+<p>软件分层思想:状态相关:界面层,逻辑控制 状态无关:数据存储,网络通信,工具类</p>
+<p>高内聚,低耦合 +轻重分离</p>
+<h3 id="单进程"><a href="#单进程" class="headerlink" title="单进程"></a>单进程</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ol>
+<li><strong>简化数据共享</strong>：同一进程中的不同组件（如<code>Activity</code>、<code>Service</code>、<code>BroadcastReceiver</code>等）可以直接共享内存和数据，避免了复杂的序列化和跨进程通信（IPC）。</li>
+<li><strong>降低复杂性</strong>：应用架构相对简单，管理和调试更容易。无需考虑进程间的同步问题。</li>
+<li><strong>资源使用效率高</strong>：使用单一进程可以减少系统资源开销，如内存和CPU使用率。</li>
+</ol>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ol>
+<li><strong>单点故障</strong>：如果进程发生崩溃，整个应用会被迫关闭。所有组件会受到影响，用户体验不佳。</li>
+<li><strong>性能瓶颈</strong>：在处理耗时操作（如网络请求、数据库操作）时，主线程可能会被阻塞，导致应用无响应（ANR）。</li>
+<li><strong>内存限制</strong>：单个进程的内存限制可能导致在处理大量数据时出现内存溢出。</li>
+</ol>
+<h3 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h3><h4 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h4><ol>
+<li><strong>增强稳定性</strong>：一个进程的崩溃不会影响到其他进程，提高了应用的稳定性和容错能力。</li>
+<li><strong>更好的资源管理</strong>：可以将不同功能的组件分布在不同的进程中，从而优化内存使用，例如将后台任务放在单独的进程中。</li>
+<li><strong>实现异步处理</strong>：将耗时的操作放在不同的进程中执行，避免主线程被阻塞，提高用户体验。</li>
+</ol>
+<h4 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h4><ol>
+<li><strong>复杂的IPC</strong>：跨进程通信需要使用AIDL、Binder等机制，增加了开发的复杂性和维护成本。</li>
+<li><strong>资源开销</strong>：多个进程会占用更多的系统资源，增加内存和CPU的使用。每个进程都有自己的内存空间，可能导致资源浪费。</li>
+<li><strong>数据共享困难</strong>：进程间不能直接共享内存，需通过序列化和反序列化等方式进行数据交换，影响性能。</li>
+</ol>
+<p>横向拆分</p>
+<p>all-in-one</p>
+<p>组合App设计</p>
+<p>单一APP,内部模块化</p>
+<p>开发质量管理:</p>
+<p>持续集成系统: Jenkins+Plugins</p>
+<p>静态代码扫描: CheckStyle Findbugs Android Lint</p>
+<p>单元测试: 逻辑层为主</p>
+<p>稳定性监控: Crash监控 ANR监控</p>
+<p>UI技术探究与应用</p>
+<p>资源管理框架</p>
+<p>res目录</p>
+<p>animator&#x2F;anim 属性动画;补间动画</p>
+<p>color&#x2F; 颜色状态Selector</p>
+<p>drawable&#x2F; Bitmap或XML Drawable files</p>
+<p>layout&#x2F; UI布局</p>
+<p>menu&#x2F; 应用菜单</p>
+<p>values&#x2F; 包含颜色值,字符串,数组等各种常量定义的资源文件</p>
+<p>xml&#x2F; xml属性配置文件</p>
+<p>raw&#x2F; 保存原始格式文件,如音频视频等</p>
+<p>388</p>
+<p>因为是计算叶子节点的长度,直接用深度优先搜索,栈来实现</p>
+<p>动态规划的核心是状态定义和状态转移方程</p>
+<p>选&#x2F;不选&#x2F;选哪个  得到二叉搜索树</p>
+<p>一般从头或尾开始思考</p>
+<p>三问 当前操作 子问题 下一个子问题</p>
+<p>找最后一个为1的数位 x&amp;(~x+1)</p>
+<p>归并排序为什么好</p>
+<p>比较行为没有浪费,变成了整体有序的部分去和其他的比较</p>
+<p>小和问题</p>
+<p>找左侧小于这个数的和</p>
+<p>转变思路:找右侧大于这个数的个数</p>
+<p>用merge的方法,左侧加入需要改变,右边不需要</p>
+<p>因为右边已经排好序,可以直接加上右边的数</p>
+<p>当左组的数等于右组的数时,加入右组的数,这样才知道有多少个数比左组的数大</p>
+<p>求右边有多少个数比当前位置大</p>
+<p>快排1.0</p>
+<p>维护小于</p>
+<p>快排2.0</p>
+<p>维护小于等于大于 一次性成功等于的数  最坏O(N2)</p>
+<p>注意相撞的时候也要判断,为了对边界确定</p>
+<p>快排3.0</p>
+<p>随机需要比较的数</p>
+<p>桶排序</p>
+<p>i位置 左孩子 2*i+1 右孩子2i+2 父(i-1)&#x2F;2</p>
+<p>基本有序，移动不超过k位<br>考虑第0位的数不会来自第7位之后 使用堆排</p>
+<p>基于比较的排序<br>不基于比较的排序<br>计数排序，统计词频<br>基数排序</p>
+<p>有负数可以先加上最小负数最后减去最小负数<br>桶排序，利用前缀和分片，找到每个数应该到的那个位置</p>
+<p>相邻交换的能做到稳定性，不相邻交换的没有稳定性，不基于比较的能很轻易做到稳定<br>稳定性:冒泡，插入，归并，桶排<br>不稳定:选择，快排，堆排</p>
+<p><img src="D:\files\图片\学习\Snipaste_2024-10-23_13-46-28.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-10-23_13-46-28"></p>
+<p><img src="D:\files\图片\学习\Snipaste_2024-10-23_13-47-13.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-10-23_13-47-13"></p>
+<p>快排就是0,1标准的排序</p>
+<p>数量级小的时候用插入（常数项低）</p>
+<p>快排常数项最低，一般最快</p>
+<p>基础类型用快排，自定义用归并（追求稳定性）</p>
+<p><img src="D:\files\图片\学习\Snipaste_2024-10-23_14-51-21.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-10-23_14-51-21"></p>
+<p>回文链表</p>
+<p>栈：将链表进入栈中，随后再次遍历，考查每次pop的值与遍历的值是否一样</p>
+<p>可以找中间节点</p>
+<p>快慢指针:可以根据哪个先走几步调整,慢指针最后</p>
+<p>停在那个位置</p>
+<p>可以快慢找中间节点,然后反转,然后同时走,然后反转</p>
+<p>荷兰国旗问题链表</p>
+<p>复制成数组</p>
+<p><img src="D:\files\图片\学习\Snipaste_2024-10-23_15-08-42.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-10-23_15-08-42"></p>
+<p>带随机指针的链表</p>
+<p>空间 map<img src="D:\files\图片\学习\Snipaste_2024-10-23_15-16-35.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-10-23_15-16-35"></p>
+<p>利用克隆节点的位置</p>
+<p><img src="D:\files\图片\学习\Snipaste_2024-10-23_15-20-35.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-10-23_15-20-35"></p>
+<p>两个单链表相交</p>
+<p>是否有环 用hashset</p>
+<p>手机的 DPI（Dots Per Inch，像素密度）是指每英寸屏幕中所包含的像素数量，用于衡量屏幕的显示精细度</p>
+<p>使用索引放式提高读取速度</p>
+<p>编译成二进制提高即系速度</p>
+<p>减少资源的大小</p>
+<p>XML（eXtensible Markup Language，可扩展标记语言）是一种用于存储和传输数据的标记语言</p>
+<p>资源的编译 R.java res资源ID常量表, resource.arsc res资源索引表</p>
+<p>资源的读取</p>
+<p><img src="D:\files\图片\学习\Snipaste_2024-10-23_16-42-07.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2024-10-23_16-42-07"></p>
+<p>UI分为窗口与控件</p>
+<p><strong>res目录</strong>，<strong>assets目录</strong>，虽然这里没有，但是我们可以自己创建，两者的区别在于是否前者下所有的资源文件都会在R.java文件下生成对应的资源id，而后者并不会；前者我们可以直接通过资源id访问到对应的资源；而后者则需要我们通过AssetManager以二进制流的形式来读取！对了，这个R文件可以理解为字典，res下每个资源都都会在这里生成一个唯一的id！</p>
+<p>3175</p>
+<p>找连续赢下K次的赢家</p>
+<p>设想有一个玩家位置是i,对于与i比较后输掉的玩家来说,他们一定不是赢家.</p>
+<p>假设玩家i赢了,那么结果是玩家i</p>
+<p>假设玩家i输了,那么也不可能是他们,因为后续拼接再次遍历到他们时,往后遍历还没到k个就一定会出现玩家i,那么他们也不可能赢</p>
+<p>非递归方式完成二叉树的先序，中序，后序遍历</p>
+<p>实质就是先打印头,后打印左,后打印右</p>
+<p>递归序遍历二叉树，每个节点都会来到三次<br>先序中序后序，分别对应第一二三次打印</p>
+<p>栈实现先序，弹出，先压右再压左</p>
+<p>后序先压左后压右,反序就行</p>
+<p>中序,对每一个节点先把左边界压入栈中,这样做的意义是左子树永远先打印,压完后弹出打印,弹出时压右子树</p>
+<p>只考虑需要改的情况</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AC%94%E8%AE%B0/" class="category-chain-item">笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/git/" class="print-no-link">#git</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>笔记</div>
+      <div>http://example.com/2025/02/26/笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>llj</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年2月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/02/26/%E5%8A%9B%E6%89%A3/" title="力扣刷题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">力扣刷题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/02/25/%E5%8D%8E%E8%BF%AA%E5%AE%9E%E4%B9%A0/" title="华迪实习">
+                        <span class="hidden-mobile">华迪实习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"L2jMVtto719vdWpNEHqfbPQl-gzGzoHsz","appKey":"bQd69eujwwZdjhfDnbRKWGcJ","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

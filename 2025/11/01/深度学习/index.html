@@ -21,24 +21,24 @@
   
     <meta name="description" content="属性或特征 把一个示例称为特征向量xi 示例+标签&#x3D;样例 用{xi,yi}表示第i个样例，yi是示例xi的标记，y是所有标记的集合，称为标记空间或输出空间 预测：离散值-&gt;分类  连续值-&gt;回归 二分类 正类，反类 一般的，预测任务是希望通过对训练集{(x1,y1),(x2,y2),…(xm,ym)}进行学习，建立一个从输入空间X到输出空间Y的映射f:X-&gt;Y。 感觉可">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器学习">
-<meta property="og:url" content="http://example.com/2025/10/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:title" content="深度学习">
+<meta property="og:url" content="http://example.com/2025/11/01/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="LiDaShazi">
 <meta property="og:description" content="属性或特征 把一个示例称为特征向量xi 示例+标签&#x3D;样例 用{xi,yi}表示第i个样例，yi是示例xi的标记，y是所有标记的集合，称为标记空间或输出空间 预测：离散值-&gt;分类  连续值-&gt;回归 二分类 正类，反类 一般的，预测任务是希望通过对训练集{(x1,y1),(x2,y2),…(xm,ym)}进行学习，建立一个从输入空间X到输出空间Y的映射f:X-&gt;Y。 感觉可">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="d:\files\hexo-blog\source\images\2025-11-16-1.png">
-<meta property="article:published_time" content="2025-09-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-16T07:11:28.213Z">
+<meta property="og:image" content="http://example.com/images/2025-11-16-1.png">
+<meta property="article:published_time" content="2025-10-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-16T08:56:25.836Z">
 <meta property="article:author" content="llj">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="d:\files\hexo-blog\source\images\2025-11-16-1.png">
+<meta name="twitter:image" content="http://example.com/images/2025-11-16-1.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>机器学习 - LiDaShazi</title>
+  <title>深度学习 - LiDaShazi</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -217,7 +217,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="机器学习"></span>
+            <span id="subtitle" data-typed-text="深度学习"></span>
           
         </div>
 
@@ -228,8 +228,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-10-01 00:00" pubdate>
-          2025年10月1日 凌晨
+        <time datetime="2025-11-01 00:00" pubdate>
+          2025年11月1日 凌晨
         </time>
       </span>
     
@@ -240,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3k 字
+          3.4k 字
         
       </span>
     
@@ -251,7 +251,7 @@
         
         
         
-          25 分钟
+          29 分钟
         
       </span>
     
@@ -297,7 +297,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">机器学习</h1>
+            <h1 id="seo-header">深度学习</h1>
             
             
               <div class="markdown-body">
@@ -527,7 +527,28 @@
 <p>𝐱⊤𝐱  xT是行向量 x是列向量</p>
 <p>线性回归</p>
 <p>梯度下降</p>
-<p><img src="D:\files\hexo-blog\source\images\2025-11-16-1.png" srcset="/img/loading.gif" lazyload alt="2025-11-16-1"></p>
+<p><img src="/images/2025-11-16-1.png" srcset="/img/loading.gif" lazyload alt="2025-11-16-1"></p>
+<p>小批量随机梯度下降，对整个样本做梯度下降耗时太大</p>
+<p>梯度下降通过不断沿着反梯度的方向更新参数求解</p>
+<p>小批量随机梯度下降时深度学习默认的求解算法</p>
+<p>两个重要的超参数是批量大小和学习率</p>
+<p>X &#x3D; torch.normal(0, 1, (num_examples, len(w)))</p>
+<p>生成一个形状为 <code>(num_examples, len(w))</code> 的矩阵，每个元素都来自 N(0,1) 的正态分布。</p>
+<p>y &#x3D; torch.matmul(X, w) + b</p>
+<p>表示 <strong>矩阵 X 与向量 w 的乘法</strong>。</p>
+<p><code>torch.mm</code> 只能做 2D 矩阵 × 矩阵</p>
+<p><strong><code>torch.matmul</code> 是“通用矩阵乘法”，支持向量、矩阵、批次等多维情况</strong></p>
+<p><code>detach()</code> 是 <strong>PyTorch</strong> 里非常核心、非常常用的一个函数，它的意思是：</p>
+<p> <strong>让张量“脱离计算图”，不再参与梯度计算</strong>（变量变常量）</p>
+<p><code>yield</code> <strong>Python 的关键字（keyword）</strong>。<br> 它的作用：<strong>把一个普通函数变成 *生成器(generator)*，可以一段一段地返回数据，而不是一次性返回。</strong></p>
+<p><strong>PyTorch 张量支持“张量索引”</strong><br> ✔ <strong>一次性取多个样本</strong><br> ✔ <strong>返回新张量</strong></p>
+<p><code>with</code> 是 Python 的一个 <strong>上下文管理（context manager）关键字</strong>，用于在一段代码块执行前 <strong>自动准备资源</strong>，执行后 <strong>自动清理资源</strong>，不用你手动去 <code>close()</code>、<code>release()</code>、<code>unlock()</code>。</p>
+<p>SGD &#x3D; <strong>Stochastic Gradient Descent</strong><br> 中文叫：<strong>随机梯度下降</strong></p>
+<p>MSE &#x3D; <strong>Mean Squared Error</strong>，中文叫 <strong>均方误差</strong></p>
+<p><strong>GD &#x3D; 用所有数据算梯度 → 更新参数（稳定慢）</strong><br> <strong>SGD &#x3D; 用一个样本或小批次算梯度 → 更新参数（快速抖动）</strong></p>
+<p>反直觉，batch_size更小反而更好，鲁棒性，小一点会带来更多噪声</p>
+<p>一阶方法：<strong>“只看坡度方向往下走”</strong></p>
+<p>二阶方法：<strong>“看坡度 + 弯曲程度（曲率）”来走最短路径”</strong></p>
 
                 
               </div>
@@ -573,8 +594,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>机器学习</div>
-      <div>http://example.com/2025/10/01/机器学习/</div>
+      <div>深度学习</div>
+      <div>http://example.com/2025/11/01/深度学习/</div>
     </div>
     <div class="license-meta">
       
@@ -586,7 +607,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年10月1日</div>
+          <div>2025年11月1日</div>
         </div>
       
       
@@ -618,18 +639,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/10/07/pytorch/" title="pytorch学习">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">pytorch学习</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/10/01/%E7%81%B5%E7%A5%9E%E9%A2%98%E5%8D%95/" title="灵神题单">
-                        <span class="hidden-mobile">灵神题单</span>
+                      <a href="/2025/10/11/java/" title="java">
+                        <span class="hidden-mobile">java</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

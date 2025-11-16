@@ -1,0 +1,934 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="llj">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="属性或特征 把一个示例称为特征向量xi 示例+标签&#x3D;样例 用{xi,yi}表示第i个样例，yi是示例xi的标记，y是所有标记的集合，称为标记空间或输出空间 预测：离散值-&gt;分类  连续值-&gt;回归 二分类 正类，反类 一般的，预测任务是希望通过对训练集{(x1,y1),(x2,y2),…(xm,ym)}进行学习，建立一个从输入空间X到输出空间Y的映射f:X-&gt;Y。 感觉可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习">
+<meta property="og:url" content="http://example.com/2025/10/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="LiDaShazi">
+<meta property="og:description" content="属性或特征 把一个示例称为特征向量xi 示例+标签&#x3D;样例 用{xi,yi}表示第i个样例，yi是示例xi的标记，y是所有标记的集合，称为标记空间或输出空间 预测：离散值-&gt;分类  连续值-&gt;回归 二分类 正类，反类 一般的，预测任务是希望通过对训练集{(x1,y1),(x2,y2),…(xm,ym)}进行学习，建立一个从输入空间X到输出空间Y的映射f:X-&gt;Y。 感觉可">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="d:\files\hexo-blog\source\images\2025-11-16-1.png">
+<meta property="article:published_time" content="2025-09-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-16T07:11:28.213Z">
+<meta property="article:author" content="llj">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="d:\files\hexo-blog\source\images\2025-11-16-1.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>机器学习 - LiDaShazi</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"L2jMVtto719vdWpNEHqfbPQl-gzGzoHsz","app_key":"bQd69eujwwZdjhfDnbRKWGcJ","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>LiDaShazi</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="机器学习"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-10-01 00:00" pubdate>
+          2025年10月1日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">机器学习</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>属性或特征</p>
+<p>把一个示例称为特征向量xi</p>
+<p>示例+标签&#x3D;样例</p>
+<p>用{xi,yi}表示第i个样例，yi是示例xi的标记，y是所有标记的集合，称为标记空间或输出空间</p>
+<p>预测：离散值-&gt;分类  连续值-&gt;回归</p>
+<p>二分类 正类，反类</p>
+<p>一般的，预测任务是希望通过对训练集{(x1,y1),(x2,y2),…(xm,ym)}进行学习，建立一个从输入空间X到输出空间Y的映射f:X-&gt;Y。</p>
+<p>感觉可以看成建立一个函数y(x)的过程</p>
+<p>根据训练数据是否拥有标记信息，学习任务分为监督学习和无监督学习，分类和回归是前者的代表，聚类是后者的代表</p>
+<p>学的模型适用于新样本的能力，称为泛化能力</p>
+<p>独立同分布由两部分组成：</p>
+<p>独立，每个样本之间互不影响。</p>
+<p>同分布，所有样本都满足同分布。</p>
+<p>归纳和演绎是科学推理的两大基本手段。</p>
+<p>从样例中学习显然是一个归纳的过程，因此亦称为归纳学习</p>
+<p>假设只有 <strong>2 个属性</strong>，每个属性有 <strong>2 种取值</strong>：</p>
+<p>在定义假设空间时，我们允许<strong>对某个属性不作区分</strong>。</p>
+<p>那每个属性可能取值数 &#x3D; 2（具体值）+1（忽略）&#x3D;3<br> → 一共有 3×3+1&#x3D;103×3 + 1 &#x3D; 103×3+1&#x3D;10 个假设。</p>
+<p>机器学习在学习过程中对某种类型假设的偏好，称为归纳偏好</p>
+<p>任何一个有效的机器学习算法必有其归纳偏好</p>
+<p>奥卡姆剃刀原则：若有多个假设与观察一致，则选最简单的那个</p>
+<p>算法喜欢选择尽可能一般的原则，即适用情形尽可能多</p>
+<p>NFL 定理（No Free Lunch Theorem，无免费午餐定理）：对于所有可能的学习任务（或所有可能的函数分布），任意两个学习算法的平均性能是相同的。</p>
+<p>分来错误的样本数咱样本总数的ILIKE为错误律</p>
+<p><strong>在 axis&#x3D;0 这个维度上求平均</strong>，也就是把“行”方向压缩掉。</p>
+<p>定义函数，成本函数，梯度下降，向量化，特征缩放，多项式回归</p>
+<p>损失函数是单个训练样本的表现</p>
+<p>数据操作：</p>
+<p>N维数组</p>
+<p>创建数组需要：形状，每个元素的数据类型，每个元素的值</p>
+<p>ctrl+enter 运行</p>
+<p>在 <strong>PyTorch</strong> 中，<code>x.numel()</code> 是一个非常常用的方法，意思是：</p>
+<blockquote>
+<p>🔹 <strong>返回张量 <code>x</code> 中所有元素（element）的总个数</strong>。</p>
+</blockquote>
+<p>一个 <strong>属性（property）</strong> 当成了 <strong>函数（callable）</strong> 去调用。</p>
+<p>如果我们的目标形状是（高度,宽度）， 那么在知道宽度后，高度会被自动计算得出，不必我们自己做除法。 在上面的例子中，为了获得一个3行的矩阵，我们手动指定了它有3行和4列。 幸运的是，我们可以通过<code>-1</code>来调用此自动计算出维度的功能。 即我们可以用<code>x.reshape(-1,4)</code>或<code>x.reshape(3,-1)</code>来取代<code>x.reshape(3,4)</code>。</p>
+<p>torch.zeros((2, 3, 4))</p>
+<p>torch.ones((2, 3, 4))</p>
+<p>torch.randn(3, 4)</p>
+<p>其中的每个元素都从均值为0、标准差为1的标准高斯分布（正态分布）中随机采样。</p>
+<p><code>torch.exp(x)</code> 是 PyTorch 中的一个<strong>数学运算函数</strong>，意思是：</p>
+<blockquote>
+<p>对张量 <code>x</code> 的每个元素执行 <strong>指数运算（exponential）</strong>，也就是计算 exe^xex。</p>
+</blockquote>
+<p>[<strong>我们也可以把多个张量*连结*（concatenate）在一起</strong>]， 把它们端对端地叠起来形成一个更大的张量。 我们只需要提供张量列表，并给出沿哪个轴连结。</p>
+<p>torch.cat((X, Y), dim&#x3D;0), torch.cat((X, Y), dim&#x3D;1)</p>
+<p>有时，我们想[<strong>通过*逻辑运算符*构建二元张量</strong>]。 以<code>X == Y</code>为例： 对于每个位置，如果<code>X</code>和<code>Y</code>在该位置相等，则新张量中相应项的值为1。 这意味着逻辑语句<code>X == Y</code>在该位置处为真，否则该位置为0。</p>
+<p>在 PyTorch 里，<code>reshape()</code> <strong>不会改变原张量本身</strong>，而是返回一个新的张量。</p>
+<p>X[1:3]左闭右开</p>
+<p>[<strong>如果在后续计算中没有重复使用<code>X</code>， 我们也可以使用<code>X[:] = X + Y</code>或<code>X += Y</code>来减少操作的内存开销。</strong>]</p>
+<p>os.path.join(‘..’, ‘data’)</p>
+<p>意思是：</p>
+<blockquote>
+<p>“从当前 Python 文件运行所在的目录，<strong>返回上一级文件夹</strong>，然后进入其中的 <code>data</code> 文件夹。”</p>
+</blockquote>
+<p><code>os.makedirs(..., exist_ok=True)</code></p>
+<p>这句的作用是：</p>
+<blockquote>
+<p>如果目录 <code>../data</code> 不存在，就创建它。<br> 如果已经存在（<code>exist_ok=True</code>），就什么都不做，不报错。</p>
+</blockquote>
+<p>data_file &#x3D; os.path.join(‘..’, ‘data’, ‘house_tiny.csv’)</p>
+<p><code>data_file = os.path.join(&#39;..&#39;, &#39;data&#39;, &#39;house_tiny.csv&#39;)</code></p>
+<p>这行只是定义一个文件路径。<br> 假设你的脚本当前工作目录是：</p>
+<figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs moonscript"><span class="hljs-name">C</span>:\Users\you\project\code\<br></code></pre></td></tr></table></figure>
+
+<p>那么这一句会得到：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-type">C</span>:\<span class="hljs-type">Users</span>\you\project\<span class="hljs-class"><span class="hljs-keyword">data</span>\house_tiny.csv</span><br></code></pre></td></tr></table></figure>
+
+<p>也就是“上一级目录的 data 文件夹中的 house_tiny.csv 文件”。</p>
+<p><code>os.path.join(&#39;..&#39;, &#39;data&#39;, &#39;house_tiny.csv&#39;)</code> <strong>内部会自动加上路径分隔符 <code>/</code>（或 <code>\</code>）</strong>，所以你看不到手动写的 <code>/</code>，但结果路径是正确的。</p>
+<p><code>with open(data_file, &#39;w&#39;) as f:</code></p>
+<p>这句是核心部分，作用是：</p>
+<blockquote>
+<p><strong>打开（或创建）一个文件用于写入（write）操作</strong>。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>open()</code></td>
+<td>打开文件的函数（内置函数）</td>
+</tr>
+<tr>
+<td><code>data_file</code></td>
+<td>文件路径（即 <code>&#39;../data/house_tiny.csv&#39;</code>）</td>
+</tr>
+<tr>
+<td><code>&#39;w&#39;</code></td>
+<td>打开模式：<strong>写入模式（write）</strong></td>
+</tr>
+<tr>
+<td><code>as f</code></td>
+<td>把打开的文件对象命名为 <code>f</code>，后面用它来写内容</td>
+</tr>
+<tr>
+<td><code>with ...:</code></td>
+<td>上下文管理器，用完自动关闭文件（防止忘记 <code>f.close()</code>）</td>
+</tr>
+</tbody></table>
+<p>with open(data_file, ‘w’) as f:</p>
+<p><strong>CSV &#x3D; Comma-Separated Values（逗号分隔值）</strong></p>
+<p>它是一种<strong>纯文本格式</strong>的表格文件，每一行是一条数据，用 <strong>逗号 <code>,</code></strong> 分隔不同的列。</p>
+<p>inputs, outputs &#x3D; data.iloc[:, 0:2], data.iloc[:, 2]</p>
+<p><code>iloc</code> —— 按位置（index number）取<br> <code>loc</code> —— 按标签（index name &#x2F; column name）取</p>
+<p>inputs &#x3D; inputs.fillna(inputs.mean())</p>
+<p> <strong>用每列的平均值填充缺失值（NaN）</strong>，在数据预处理中非常常见。</p>
+<p><code>pd.get_dummies()</code><br> 👉 把每个可能的分类取值（如 “red”、”blue”、”green”）变成一列。</p>
+<p>这一列的值是 0 或 1<br> 👉 表示该行是不是属于这个类别。</p>
+<p><code>dummy_na=True</code><br> 👉 让 <code>NaN</code>（缺失值）也变成一个独立的类别（如 <code>color_nan</code>）。</p>
+<p><code>pd.get_dummies(inputs, dummy_na=True)</code><br> 会把表格里的文字 &#x2F; 分类列变成 0-1 数字矩阵，<br> 同时保留缺失值信息。</p>
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>修改现在的是否改原数据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>得到的是视图（view）</td>
+<td>✅ 会改</td>
+</tr>
+<tr>
+<td>得到的是副本（copy）</td>
+<td>❌ 不会改</td>
+</tr>
+</tbody></table>
+<p>线性代数</p>
+<p>标量，向量，向量的长度等于每个向量值的平方之和在开根号</p>
+<p>矩阵，（a,b)*(b,c)&#x3D;(a,c)</p>
+<p><strong>矩阵范数（Matrix Norm）</strong> 是衡量一个矩阵“大小”的一种方式。<br> 就像向量有长度（欧几里得范数）一样，矩阵也可以定义“长度”或“大小”来描述它在数学运算中的性质。</p>
+<p>给定一个矩阵 A，矩阵范数是一个函数</p>
+<p> Frobenius 范数（最常见）</p>
+<p>定义为矩阵所有元素平方和的平方根：</p>
+<p>特殊矩阵</p>
+<p>对称和反对成 aij &#x3D; aji</p>
+<p>正定 </p>
+<p>设 A 是一个 <strong>实对称矩阵</strong>（即 A&#x3D;AT），<br> 如果对任意非零向量 x∈R，都有：</p>
+<p>xTAx&gt;0</p>
+<p>则称 <strong>A 是正定矩阵（positive definite）</strong>。</p>
+<p>你可以把 xTAx 看作一个“二次型”：</p>
+<ul>
+<li><p>如果 A 是正定的，那么无论你取哪个方向的 x，<br> 结果xTAx 都是正的 ——<br> 像一个 <strong>碗口向上</strong> 的曲面（最小值在原点）。</p>
+<p>f(x)&#x3D;xTAx   正定矩阵 ⇒ “碗形”函数</p>
+</li>
+<li><p>如果 A 是负定的，就是碗口向下。</p>
+</li>
+</ul>
+<p>一个 <strong>方阵 QQQ</strong> 被称为 <strong>正交矩阵</strong>，<br> 如果它满足：</p>
+<p>QTQ&#x3D;I</p>
+<p>一个 <strong>n×n 的矩阵 P</strong>，<br> 如果它的每一行、每一列里<strong>恰好有一个元素为 1</strong>，其余全是 0，<br> 那么 P 就叫做一个 <strong>置换矩阵（Permutation Matrix）</strong>。</p>
+<p>特征向量和特征值</p>
+<p>A.T 矩阵转置，按照对角线翻转</p>
+<p>对称矩阵，A&#x3D;A.t</p>
+<p>A &#x3D; torch.arange(20, dtype&#x3D;torch.float32).reshape(5, 4)<br>B &#x3D; A.clone()  # 通过分配新内存，将A的一个副本分配给B<br>A, A + B</p>
+<p>A*B是每个元素相乘，需要形状相同</p>
+<p>降维</p>
+<p>非降维求和</p>
+<p>sum_A &#x3D; A.sum(axis&#x3D;1, keepdims&#x3D;True)</p>
+<p>A &#x2F; sum_A</p>
+<p>例如，由于<code>sum_A</code>在对每行进行求和后仍保持两个轴，我们可以(<strong>通过广播将<code>A</code>除以<code>sum_A</code></strong>)。</p>
+<p>如果我们想沿[<strong>某个轴计算<code>A</code>元素的累积总和</strong>]， 比如<code>axis=0</code>（按行计算），可以调用<code>cumsum</code>函数。 此函数不会沿任何轴降低输入张量的维度。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">A.cumsum(<span class="hljs-attribute">axis</span>=0)<br></code></pre></td></tr></table></figure>
+
+<p>也就是前缀和</p>
+<p>给定两个向量：</p>
+<p>a&#x3D;[a1,a2,…,an],b&#x3D;[b1,b2,…,bn]</p>
+<p><strong>向量点积</strong>（也叫内积、标量积）定义为：也就是AB.T</p>
+<p>a⋅b&#x3D;a1b1+a2b2+⋯+anbn&#x3D;∑aibi</p>
+<p>点积在很多场合都很有用。 例如，给定一组由向量𝐱∈ℝ𝑑表示的值， 和一组由𝐰∈ℝ𝑑表示的权重。 𝐱中的值根据权重𝐰的加权和， 可以表示为点积𝐱⊤𝐰。 当权重为非负数且和为1（即(∑𝑤𝑖&#x3D;1)）时， 点积表示<em>加权平均</em></p>
+<p>矩阵向量积</p>
+<p>在代码中使用张量表示矩阵-向量积，我们使用<code>mv</code>函数。 当我们为矩阵<code>A</code>和向量<code>x</code>调用<code>torch.mv(A, x)</code>时，会执行矩阵-向量积。 注意，<code>A</code>的列维数（沿轴1的长度）必须与<code>x</code>的维数（其长度）相同。</p>
+<p>矩阵-矩阵乘法</p>
+<p>B &#x3D; torch.ones(4, 3)<br>torch.mm(A, B)</p>
+<figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cos">torch.dot、torch.<span class="hljs-keyword">mv</span>、torch.mm<br></code></pre></td></tr></table></figure>
+
+
+
+<p>跨域推荐复迁移问题</p>
+<p>domain adaption</p>
+<p>猜重复用户</p>
+<p>多个sequence ，user分类，从众心理？风俗？</p>
+<p>先训练一个模型，然后一步一步加入其他领域的训练数据一下一下改，整体的信息呢？</p>
+<p>线性代数中最有用的一些运算符是<em>范数</em>（norm）。 非正式地说，向量的<em>范数</em>是表示一个向量有多大。 这里考虑的<em>大小</em>（size）概念不涉及维度，而是分量的大小。</p>
+<p>感觉预测新领域的同一个用户</p>
+<p>在线性代数中，向量范数是将向量映射到标量的函数𝑓</p>
+<p> 第一个性质是：如果我们按常数因子𝛼缩放向量的所有元素， 其范数也会按相同常数因子的<em>绝对值</em>缩放：</p>
+<p>𝑓(𝛼𝐱)&#x3D;|𝛼|𝑓(𝐱).</p>
+<p>第二个性质是熟悉的三角不等式:</p>
+<p>𝑓(𝐱+𝐲)≤𝑓(𝐱)+𝑓(𝐲).</p>
+<p>第三个性质简单地说范数必须是非负的:</p>
+<p>𝑓(𝐱)≥0.</p>
+<p>最后一个性质要求范数最小为0，当且仅当向量全由0组成。</p>
+<p>∀𝑖,[𝐱]𝑖&#x3D;0⇔𝑓(𝐱)&#x3D;0.</p>
+<p>𝐿2<em>范数</em>是向量元素平方和的平方根</p>
+<p>u &#x3D; torch.tensor([3.0, -4.0])<br>torch.norm(u) 计算L2范数</p>
+<p>深度学习中更经常地使用𝐿2范数的平方，也会经常遇到[<strong>𝐿1范数，它表示为向量元素的绝对值之和：</strong>]</p>
+<p>(‖𝐱‖1&#x3D;∑|𝑥𝑖|.)</p>
+<p>与𝐿2范数相比，𝐿1范数受异常值的影响较小。 为了计算𝐿1范数，我们将绝对值函数和按元素求和组合起来。</p>
+<p>Lp范数</p>
+<p>|x|&#x3D;(∑|x|P次方)开p根</p>
+<p>标量导数</p>
+<p>向量导数 梯度 形状？</p>
+<p>梯度指向值变化最大的那个方向</p>
+<p><code>&lt;U, V&gt;</code> 通常表示 <strong>向量 U 和向量 V 的内积（Inner Product）或点积（Dot Product）</strong>。</p>
+<p>P &#x3D; 能在多项式时间内被“确定性算法”解决的问题。</p>
+<p><strong>NP &#x3D; 解能在多项式时间内被“验证”的问题</strong>（不一定能快速求解）。</p>
+<p><strong>NP-hard &#x3D; 至少跟 NP 难题一样难，甚至更难</strong>。</p>
+<p>不要求结果能在多项式时间验证。</p>
+<p>只要它 &gt;&#x3D; 任意 NP 问题的难度，就是 NP-hard。</p>
+<p> <strong>P &#x3D; 容易求解的问题</strong>。</p>
+<p><strong>NP &#x3D; 解不好求，但解给你后很容易验证的问题</strong>。</p>
+<p><strong>NP-hard &#x3D; 比 NP 问题更难处理的怪物</strong>。</p>
+<p>计算图&#x3D;&#x3D;链式法则求导</p>
+<p>正向求导和反向求导区别</p>
+<p>推导方向</p>
+<p>从输入 → 输出</p>
+<p>从输出 → 输入</p>
+<p>𝐱⊤𝐱  xT是行向量 x是列向量</p>
+<p>线性回归</p>
+<p>梯度下降</p>
+<p><img src="D:\files\hexo-blog\source\images\2025-11-16-1.png" srcset="/img/loading.gif" lazyload alt="2025-11-16-1"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/AI/" class="category-chain-item">AI</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AC%94%E8%AE%B0/" class="print-no-link">#笔记</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>机器学习</div>
+      <div>http://example.com/2025/10/01/机器学习/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>llj</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年10月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/10/07/pytorch/" title="pytorch学习">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">pytorch学习</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/10/01/%E7%81%B5%E7%A5%9E%E9%A2%98%E5%8D%95/" title="灵神题单">
+                        <span class="hidden-mobile">灵神题单</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"L2jMVtto719vdWpNEHqfbPQl-gzGzoHsz","appKey":"bQd69eujwwZdjhfDnbRKWGcJ","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

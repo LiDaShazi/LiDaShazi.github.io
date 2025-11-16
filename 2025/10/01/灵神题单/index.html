@@ -1,0 +1,803 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="llj">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="题单刷题顺序 1-&gt;2-&gt;8-&gt;11-&gt;4-&gt;6-&gt;7 定长滑动窗口 窗口右端点在 i 时，由于窗口长度为 k，所以窗口左端点为 i−k+1。 我总结成三步：入-更新-出。 入：下标为 i 的元素进入窗口，更新相关统计量。如果窗口左端点 i−k+1&lt;0，则尚未形成第一个窗口，重复第一步。更新：更新答案。一般是更新最大值&#x2F;最小值。出：下标为 i−k">
+<meta property="og:type" content="article">
+<meta property="og:title" content="灵神题单">
+<meta property="og:url" content="http://example.com/2025/10/01/%E7%81%B5%E7%A5%9E%E9%A2%98%E5%8D%95/index.html">
+<meta property="og:site_name" content="LiDaShazi">
+<meta property="og:description" content="题单刷题顺序 1-&gt;2-&gt;8-&gt;11-&gt;4-&gt;6-&gt;7 定长滑动窗口 窗口右端点在 i 时，由于窗口长度为 k，所以窗口左端点为 i−k+1。 我总结成三步：入-更新-出。 入：下标为 i 的元素进入窗口，更新相关统计量。如果窗口左端点 i−k+1&lt;0，则尚未形成第一个窗口，重复第一步。更新：更新答案。一般是更新最大值&#x2F;最小值。出：下标为 i−k">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-09-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-10-14T08:26:47.466Z">
+<meta property="article:author" content="llj">
+<meta property="article:tag" content="力扣">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>灵神题单 - LiDaShazi</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"L2jMVtto719vdWpNEHqfbPQl-gzGzoHsz","app_key":"bQd69eujwwZdjhfDnbRKWGcJ","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>LiDaShazi</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="灵神题单"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-10-01 00:00" pubdate>
+          2025年10月1日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">灵神题单</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>题单刷题顺序</p>
+<p>1-&gt;2-&gt;8-&gt;11-&gt;4-&gt;6-&gt;7</p>
+<p><strong>定长滑动窗口</strong></p>
+<p>窗口右端点在 i 时，由于窗口长度为 k，所以窗口左端点为 i−k+1。</p>
+<p>我总结成三步：入-更新-出。</p>
+<p>入：下标为 i 的元素进入窗口，更新相关统计量。如果窗口左端点 i−k+1&lt;0，则尚未形成第一个窗口，重复第一步。<br>更新：更新答案。一般是更新最大值&#x2F;最小值。<br>出：下标为 i−k+1 的元素离开窗口，更新相关统计量，为下一个循环做准备。<br>以上三步适用于所有定长滑窗题目。</p>
+<p><code>enumerate()</code> 可以让你在遍历时方便地同时得到 <strong>索引 + 元素</strong>。</p>
+<p><code>cnt = defaultdict(int)</code> 就是一个 <strong>默认值为 0 的字典</strong>。</p>
+<p><strong>3679</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br><br>  <span class="hljs-keyword">def</span> <span class="hljs-title function_">minArrivalsToDiscard</span>(<span class="hljs-params">self, arrivals: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>], w: <span class="hljs-built_in">int</span>, m: <span class="hljs-built_in">int</span></span>) -&gt; <span class="hljs-built_in">int</span>:<br><br>​    ans = <span class="hljs-number">0</span><br><br>​    dt = defaultdict(<span class="hljs-built_in">int</span>)<br><br>​    fg = [<span class="hljs-number">1</span>] * <span class="hljs-built_in">len</span>(arrivals)<br><br><br><br>​    <span class="hljs-keyword">for</span> i, c <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(arrivals):<br><br>​      dt[c] += <span class="hljs-number">1</span><br><br>​      <span class="hljs-keyword">if</span> dt[c] &gt; m:<br><br>​        ans += <span class="hljs-number">1</span><br><br>​        dt[c] -= <span class="hljs-number">1</span><br><br>​        fg[i] = <span class="hljs-number">0</span><br><br><br><br>​      left = i - w + <span class="hljs-number">1</span><br><br>​      <span class="hljs-keyword">if</span> left &lt; <span class="hljs-number">0</span>:<br><br>​        <span class="hljs-keyword">continue</span><br><br><br><br>​      <span class="hljs-keyword">if</span> fg[left]:<br><br>​        dt[arrivals[left]] -= <span class="hljs-number">1</span><br><br><br><br>​    <span class="hljs-keyword">return</span> ans<br><br><br><br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br><br>  <span class="hljs-keyword">def</span> <span class="hljs-title function_">minArrivalsToDiscard</span>(<span class="hljs-params">self, arrivals: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>], w: <span class="hljs-built_in">int</span>, m: <span class="hljs-built_in">int</span></span>) -&gt; <span class="hljs-built_in">int</span>:<br><br>​    cnt = [<span class="hljs-number">0</span>] * (<span class="hljs-built_in">max</span>(arrivals) + <span class="hljs-number">1</span>)  <span class="hljs-comment"># 或者用 defaultdict(int)</span><br><br>​    ans = <span class="hljs-number">0</span><br><br>​    <span class="hljs-keyword">for</span> i, x <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(arrivals):<br><br>​      \<span class="hljs-comment"># x 进入窗口</span><br><br>​      <span class="hljs-keyword">if</span> cnt[x] == m:  <span class="hljs-comment"># x 的个数已达上限</span><br><br>​        \<span class="hljs-comment"># 注意 x 在未来要离开窗口，但由于已经丢弃，不能在离开窗口时修改 cnt</span><br><br>​        \<span class="hljs-comment"># 这里直接置为 0，未来离开窗口就是 cnt[0]--，不影响答案</span><br><br>​        arrivals[i] = <span class="hljs-number">0</span><br><br>​        ans += <span class="hljs-number">1</span><br><br>​      <span class="hljs-keyword">else</span>:<br><br>​        cnt[x] += <span class="hljs-number">1</span><br><br><br><br>​      \<span class="hljs-comment"># 左端点元素离开窗口，为下一个循环做准备</span><br><br>​      left = i + <span class="hljs-number">1</span> - w<br><br>​      <span class="hljs-keyword">if</span> left &gt;= <span class="hljs-number">0</span>:<br><br>​        cnt[arrivals[left]] -= <span class="hljs-number">1</span><br><br>​    <span class="hljs-keyword">return</span> ans<br></code></pre></td></tr></table></figure>
+
+<p>为啥后一种方法节省了一个标记数组</p>
+<p>因为无效的当前类型的无后效性，当对目前的是无效的数组类型时，已经要丢弃他时，我们不需要知道他到底是多少，于是我们可以把他改为统一个一个无用的数据，用以区分正常的数据。</p>
+<p><strong>不定长滑动窗口</strong></p>
+<p>不定长滑动窗口主要分为三类：求最长子数组，求最短子数组，求子数组个数。</p>
+<p>注：滑动窗口相当于在维护一个队列。右指针的移动可以视作入队，左指针的移动可以视作出队。</p>
+<p>1.最长连续子串（越短越合法）</p>
+<p>本质就是以右端点为基准找到左边最能延展到的地方</p>
+<p>与前面定长的不同的就是，左右端点都需要维护</p>
+<p>移动右端点（入）</p>
+<p>移动左端点（出）</p>
+<p>跟新答案（跟新）</p>
+<p>2.最短连续子串（越短越合法）</p>
+<p>入，出（满足要求就出去并跟新）</p>
+<p>如果跟数组的顺序无关的话，可以试试排一下序</p>
+<p>如果要对两头进行操作 ，想想看能不能互补操作，就是找中间的连续的，正难则反操作</p>
+<p>等于可以看成大于等于，只要能够保证最后得到的结果一定是等于的就可以</p>
+<p><strong>题713</strong></p>
+<p>问：如果不特判 k≤1，代码要怎么改？</p>
+<p>答：如果 k≤1，那么代码中的 prod &gt;&#x3D; k 恒为真。可以额外判断 left≤right 避免下标越界，即内层循环条件改成 left &lt;&#x3D; right &amp;&amp; prod &gt;&#x3D; k。</p>
+<p>cnt&#x3D;Counter()，专门用来计数的字典</p>
+<p><strong>§2.3 求子数组个数</strong><br><strong>§2.3.1 越短越合法</strong><br>一般要写 ans +&#x3D; right - left + 1。</p>
+<p>内层循环结束后，[left,right] 这个子数组是满足题目要求的。由于子数组越短，越能满足题目要求，所以除了 [left,right]，还有 [left+1,right],[left+2,right],…,[right,right] 都是满足要求的。也就是说，当右端点固定在 right 时，左端点在 left,left+1,left+2,…,right 的所有子数组都是满足要求的，这一共有 right−left+1 个。</p>
+<p><strong>§2.3.2 越长越合法</strong><br>一般要写 ans +&#x3D; left。</p>
+<p>内层循环结束后，[left,right] 这个子数组是不满足题目要求的，但在退出循环之前的最后一轮循环，[left−1,right] 是满足题目要求的。由于子数组越长，越能满足题目要求，所以除了 [left−1,right]，还有 [left−2,right],[left−3,right],…,[0,right] 都是满足要求的。也就是说，当右端点固定在 right 时，左端点在 0,1,2,…,left−1 的所有子数组都是满足要求的，这一共有 left 个。</p>
+<p>我们关注的是 left−1 的合法性，而不是 left。</p>
+<p>求最大最小时一般都要用到字典</p>
+<p><strong>3325</strong></p>
+<p>问：为什么只需判断 cnt[c - ‘a’] &gt;&#x3D; k？</p>
+<p>答：因为只有 cnt[c - ‘a’]++ 导致了 cnt[c - ‘a’] 达到 k，所以其余字母的出现次数必然小于 k，无需判断。当然，这里的 &gt;&#x3D; 写成 &#x3D;&#x3D; 也是可以的。</p>
+<p>§2.3.3 恰好型滑动窗口<br>例如，要计算有多少个元素和恰好等于 k 的子数组，可以把问题变成：</p>
+<p>计算有多少个元素和 ≥k 的子数组。<br>计算有多少个元素和 &gt;k，也就是 ≥k+1 的子数组。<br>答案就是元素和 ≥k 的子数组个数，减去元素和 ≥k+1 的子数组个数。这里把 &gt; 转换成 ≥，从而可以把滑窗逻辑封装成一个函数 solve，然后用 solve(k)−solve(k+1) 计算，无需编写两份滑窗代码。</p>
+<p>总结：「恰好」可以拆分成两个「至少」，也就是两个「越长越合法」的滑窗问题。</p>
+<p>注：也可以把问题变成 ≤k 减去 ≤k−1，即两个「至多」。可根据题目选择合适的变形方式。</p>
+<p>注：也可以把两个滑动窗口合并起来，维护同一个右端点 right 和两个左端点 left 1 和 left 2，我把这种写法叫做三指针滑动窗口。</p>
+<p>2080</p>
+<p>查询区间内数组的频率</p>
+<p>对于 arr 中的每个数，计算其在 arr 中的出现位置（下标）。例如 arr&#x3D;[1,2,1,1,2,2]，其中数字 2 的下标为 [1,4,5]（有序）。</p>
+<p>知道了下标，那么对于 query 来说，问题就变成了：</p>
+<p>下标列表中，满足 left≤i≤right 的下标 i 的个数。</p>
+<p>3488</p>
+<p>环形数组找最近距离可以在前面后面各加一个哨兵</p>
+<p>并且这样保证了前面后面的数组索引不会越界</p>
+<p>由于 nums 是循环数组：</p>
+<p>在下标列表前面添加 4−n&#x3D;−3，相当于认为在 −3 下标处也有一个 1。<br>在下标列表末尾添加 0+n&#x3D;7，相当于认为在 7 下标处也有一个 1。</p>
+<p>二分答案</p>
+<blockquote>
+<p>“花费一个 log 的时间，增加了一个条件。” —— 二分答案</p>
+</blockquote>
+<p>求最小</p>
+<p>题目求什么，就二分什么。</p>
+<p>答疑<br>问：如何把二分答案与数组上的二分查找联系起来？</p>
+<p>答：假设答案在区间 [2,5] 中，我们相当于在一个虚拟数组 [check(2),check(3),check(4),check(5)] 中二分找第一个（或者最后一个）值为 true 的 check(i)。这同样可以用红蓝染色法思考。</p>
+<p>问：有些题目，明明 m 可以是答案，但却不在初始二分区间中。比如闭区间二分初始化 right&#x3D;m−1（或者开区间 right&#x3D;m），这不会算错吗？</p>
+<p>答：不会算错。注意「答案所在区间」和「二分区间」是两个概念。想一想，如果二分的 while 循环每次更新的都是 left，那么最终答案是什么？正好就是 m。一般地，如果一开始就能确定 m 一定可以满足题目要求，那么 m 是不需要在二分区间中的。换句话说，二分区间是「尚未确定是否满足题目要求」的数的范围。那些在区间外面的数，都是已确定的满足（不满足）题目要求的数。</p>
+<p>问：什么是循环不变量？</p>
+<p>答：想一想，对于求最小的题目，开区间二分的写法，为什么最终返回的是 right，而不是别的数？在初始化（循环之前）、循环中、循环结束后，都时时刻刻保证 check(right) &#x3D;&#x3D; true 和 check(left) &#x3D;&#x3D; false，这就叫循环不变量。根据循环不变量，循环结束时 left + 1 &#x3D;&#x3D; right，那么 right 就是最小的满足要求的数（因为再 −1 就不满足要求了），所以答案是 right。</p>
+<p>注：部分题目可以优化二分边界，减少二分次数，从而减少代码运行时间。对于初次接触二分答案的同学，无需强求自己写出最优的代码，设定一个比较大的二分上界也是可以的。</p>
+<p>(a-1)&#x2F;&#x2F;b+1（向上取整）</p>
+<p>指的是当问题的答案是一个 <strong>有序的数值范围</strong>（比如最小值、最大值、最短时间、最小代价等），<br> 而我们能写出一个单调判断函数 <code>check(x)</code>，<br> 满足：</p>
+<blockquote>
+<p>若 <code>check(x)</code> 为 True，则所有更大（或更小）的 x 也满足条件。</p>
+</blockquote>
+<p>我们就可以用二分法在这个“答案空间”上找到极值。</p>
+<p>答案越大（小）越能满足要求</p>
+<p>1011</p>
+<p>check函数默认 load ≥ max(weights)。</p>
+<p>如果把 left 设得更小，比如max(weights) - 2, 会导致二分过程中出现 mid &lt; max(weights)让helper 误判把非法值当答案。(相当于在else的时候，直接放进去了一个大于装载的)</p>
+<p>一定要考虑这种非法情况的话，在check函数开头加上提前判定即可: 如果任何一个包裹大于当前运载能力，直接返回不可能完成<br><code>if any(w &gt; load for w in weights): return days + 1</code></p>
+<p>本质是二分答案求最小。二分的 <em>mid</em> 表示上界。</p>
+<p>好比用一个盖子（上界）去压住最大值，看看能否压住（check 函数）。</p>
+<p>枚举右，维护左<br>对于 双变量问题，例如两数之和 a i +a j&#x3D;t，可以枚举右边的 a j ，转换成 单变量问题，也就是在 a j左边查找是否有 a i &#x3D;t−a j ，这可以用哈希表维护。</p>
+<p>我把这个技巧叫做 枚举右，维护左。</p>
+<p><code>max_d = max(map(int, str(v)))</code><br> 把数字 <code>v</code> 拆成每一位，取其中最大的数字。</p>
+<p><code>if cnt[k - x]:</code><br> 就是在判断：<br> 在计数字典 <code>cnt</code> 中，键为 <code>k - x</code> 的数量是否大于 0？ 两个条件</p>
+<p>对于三个或者四个变量的问题，枚举中间的变量往往更好算。</p>
+<p>zip(…)把两个序列一一对应地打包，比如 <code>(j,val)</code></p>
+<p>前缀和数组保证在当前索引之前的和，不加当前的数</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs py">s = <span class="hljs-built_in">list</span>(accumulate(nums, initial=<span class="hljs-number">0</span>))<br></code></pre></td></tr></table></figure>
+
+<p>计算前缀和</p>
+<p>考虑这样一个问题：给你一个只包含 0 和 1 的数组，如何快速判断一个子数组是否全为 0？</p>
+<p>解答：如果子数组的元素和等于 0，那么子数组一定全为 0；如果子数组的元素和大于 0，那么子数组一定包含 1。</p>
+<p>对于本题，定义长为 n−1 的数组 a，其中</p>
+<p>a[i]&#x3D;{ 0，nums[i]mod2！&#x3D;nums[i+1]mod2</p>
+<p>1,nums[i]mod2&#x3D;nums[i+1]mod2</p>
+<p>如果 a 的下标从 from 到 to−1 的子数组和等于 0，就说明 nums 的下标从 from 到 to 的这个子数组，其所有相邻元素的奇偶性都不同，该子数组为特殊数组。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/python/" class="category-chain-item">python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8A%9B%E6%89%A3/" class="print-no-link">#力扣</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>灵神题单</div>
+      <div>http://example.com/2025/10/01/灵神题单/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>llj</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年10月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/10/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" title="机器学习">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">机器学习</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/15/%E6%B2%89%E5%BF%83%E5%88%B7%E9%A2%98/" title="沉心刷题">
+                        <span class="hidden-mobile">沉心刷题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"L2jMVtto719vdWpNEHqfbPQl-gzGzoHsz","appKey":"bQd69eujwwZdjhfDnbRKWGcJ","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
